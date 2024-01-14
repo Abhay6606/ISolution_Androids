@@ -1,4 +1,4 @@
-package com.example.isolution;
+package com.example.isolution.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
+
+import com.example.isolution.R;
 
 public class ViewPagerAdapter extends PagerAdapter {
     Context context;
@@ -34,7 +36,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     String headings[] = {
 
-            "Welcome!", "Snap it", "Grabit"
+            "Welcome!", "Snap it", "Grab it"
     };
 
     public ViewPagerAdapter(Context context) {

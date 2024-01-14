@@ -1,16 +1,16 @@
-package com.example.isolution;
+package com.example.isolution.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
-public class calling_details extends AppCompatActivity {
+import com.example.isolution.R;
+
+public class CallingDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calling_details);
-        getSupportActionBar().hide();
     }
 }

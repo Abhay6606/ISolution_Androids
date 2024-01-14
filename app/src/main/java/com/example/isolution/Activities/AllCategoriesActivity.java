@@ -1,8 +1,10 @@
-package com.example.isolution;
+package com.example.isolution.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.isolution.R;
 
 public class AllCategoriesActivity extends AppCompatActivity {
 

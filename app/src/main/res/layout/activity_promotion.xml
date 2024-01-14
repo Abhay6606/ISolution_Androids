@@ -13,18 +13,25 @@
         android:orientation="vertical">
 
         <include layout="@layout/appbar_main" />
-        <RelativeLayout
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:gravity="start">
-
-            <include
-                layout="@layout/header_layout"/>
-
-        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Promotion"
+            android:layout_gravity="center"
+            android:layout_marginTop="250dp"
+            android:textSize="32dp"/>
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_gravity="start">
+
+        <include
+            layout="@layout/header_layout"/>
+
+    </RelativeLayout>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

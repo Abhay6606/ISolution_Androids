@@ -8,21 +8,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.isolution.AllCategoriesActivity;
 import com.example.isolution.R;
-import com.example.isolution.calling_details;
-import com.example.isolution.databinding.ActivityMain2Binding;
-import com.example.isolution.databinding.AppbarMainBinding;
 
 public class MainActivity2 extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
-    TextView setting,profile,nearbyMe,favourite,notification,promotion,help,home,allCategories;
+    TextView setting,profile,nearbyMe,favourite,notification,promotion,help,home,allCategories,logout;
     CardView cardCallingDetais,cardLeadDetails,cardLeadGroupDetails,cardFollowupDetails,cardCallRecoreding,cardAgentDetails;
 
     @Override
@@ -33,6 +28,7 @@ public class MainActivity2 extends AppCompatActivity {
         drawerLayout=findViewById(R.id.drawerLayout);
         menu=findViewById(R.id.menu);
         setting=findViewById(R.id.drwrSetting);
+        logout=findViewById(R.id.drwrLogout);
         profile=findViewById(R.id.drwrProfile);
         nearbyMe=findViewById(R.id.drerNearbyme);
         favourite=findViewById(R.id.drwrFavourite);
@@ -53,7 +49,7 @@ public class MainActivity2 extends AppCompatActivity {
         cardCallingDetais.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity2.this ,calling_details.class);
+                Intent intent=new Intent(MainActivity2.this , CallingDetailsActivity.class);
                 startActivity(intent);
             }
         });
@@ -89,7 +85,8 @@ public class MainActivity2 extends AppCompatActivity {
         });
         home.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 recreate();
             }
         });
@@ -97,6 +94,12 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 redirectActivity(MainActivity2.this, SettingsActivity.class);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(MainActivity2.this, LogoutActivity.class);
             }
         });
         profile.setOnClickListener(new View.OnClickListener() {

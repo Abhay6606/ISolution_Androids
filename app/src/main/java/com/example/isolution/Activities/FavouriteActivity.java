@@ -16,7 +16,7 @@ import com.example.isolution.R;
 public class FavouriteActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
-    TextView setting,profile,nearbyMe,favourite,notification,promotion,help,home;
+    TextView setting,profile,nearbyMe,favourite,notification,promotion,help,home,logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class FavouriteActivity extends AppCompatActivity {
         menu=findViewById(R.id.menu);
         setting=findViewById(R.id.drwrSetting);
         profile=findViewById(R.id.drwrProfile);
+        logout=findViewById(R.id.drwrLogout);
         nearbyMe=findViewById(R.id.drerNearbyme);
         favourite=findViewById(R.id.drwrFavourite);
         notification=findViewById(R.id.drwrNotification);
@@ -49,6 +50,12 @@ public class FavouriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 redirectActivity(FavouriteActivity.this, SettingsActivity.class);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(FavouriteActivity.this, LogoutActivity.class);
             }
         });
         profile.setOnClickListener(new View.OnClickListener() {

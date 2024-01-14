@@ -18,6 +18,9 @@
             android:name=".Activities.HelpActivity"
             android:exported="false" />
         <activity
+            android:name=".Activities.LogoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.SettingsActivity"
             android:exported="false" />
         <activity
@@ -36,25 +39,22 @@
             android:name=".Activities.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".calling_details"
+            android:name=".Activities.CallingDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".AllCategoriesActivity"
+            android:name=".Activities.AllCategoriesActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity3"
+            android:name=".Activities.SignupActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,6 +5,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:openDrawer="start"
     tools:context=".Activities.MainActivity2">
 
     <LinearLayout
@@ -39,20 +40,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="Hello Satyam"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Have  a Nice Day!"
+                    android:text="I-Solutions Pvt Ltd"
                     android:textColor="@color/orange"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -60,42 +61,26 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/circleImageView"
-                    android:layout_width="110dp"
-                    android:layout_height="102dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="111dp"
+                    android:layout_height="118dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="28dp"
                     android:src="@drawable/profileicon"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:id="@+id/editTextText4"
-                    android:layout_width="198dp"
-                    android:layout_height="23dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/sign_up_edittext_background"
-                    android:drawableRight="@drawable/searchh"
-                    android:ems="10"
-                    android:hint="Search"
-                    android:inputType="text"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView3"
                     android:layout_width="323dp"
                     android:layout_height="152dp"
                     android:layout_marginStart="40dp"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="41dp"
                     android:layout_marginEnd="48dp"
                     android:backgroundTint="@color/orange"
                     app:cardCornerRadius="25dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextText4">
+                    app:layout_constraintTop_toBottomOf="@+id/textView13">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -320,13 +305,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="Call Report"
                     android:textColor="@color/black"
                     android:textSize="17sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
@@ -859,22 +844,44 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"></LinearLayout>
 
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Calling Process"
+                    android:textColor="@color/black"
+                    android:drawableLeft="@drawable/phone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="68dp"
+                    android:layout_height="29dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/i_soliutin" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </ScrollView>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:layout_gravity="start">
-
-            <include layout="@layout/header_layout" />
-
-        </RelativeLayout>
 
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_gravity="start">
+
+        <include layout="@layout/header_layout" />
+
+    </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
