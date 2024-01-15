@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ContactLeadActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:background="@drawable/categories_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="324dp"
+        android:layout_height="187dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/orange_border_rectangle"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/orange">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/totalcallbg">
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="37dp"
+                    android:layout_height="13dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="13dp"
+                    android:text="30"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView17"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView16"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="132dp"
+                    android:src="@drawable/misscall"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView17" />
+
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="37dp"
+                    android:layout_height="13dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:text="25"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView16"
+                    app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+                <TextView
+                    android:id="@+id/textView35"
+                    android:layout_width="60dp"
+                    android:layout_height="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="2dp"
+                    android:text="Missed Calls"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView16"
+                    app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageView17"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="132dp"
+                    android:src="@drawable/calling"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView18"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="132dp"
+                    android:src="@drawable/answredcall"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+
+                <ImageView
+                    android:id="@+id/imageView19"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="132dp"
+                    android:src="@drawable/callrecording"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView18" />
+
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="60dp"
+                    android:layout_height="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="2dp"
+                    android:text="No of going calls"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView17"
+                    app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+                <TextView
+                    android:id="@+id/textView37"
+                    android:layout_width="37dp"
+                    android:layout_height="13dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:text="17"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView18"
+                    app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+                <TextView
+                    android:id="@+id/textView38"
+                    android:layout_width="60dp"
+                    android:layout_height="11dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="2dp"
+                    android:text="Answered calls"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView18"
+                    app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+                <TextView
+                    android:id="@+id/textView39"
+                    android:layout_width="58dp"
+                    android:layout_height="11dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="2dp"
+                    android:text="Avg Talktime"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView19"
+                    app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+                <TextView
+                    android:id="@+id/textView41"
+                    android:layout_width="37dp"
+                    android:layout_height="13dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:text="180min"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView19"
+                    app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button2"
+        android:layout_width="120dp"
+        android:layout_height="25dp"
+        android:background="@drawable/orange_border_rectangle"
+        android:backgroundTint="@color/orange"
+        android:text="Lead Details"
+        android:textColor="@color/white"
+        android:textSize="11dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView3"
+        android:layout_width="362dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView4"
+        android:layout_width="360dp"
+        android:layout_height="344dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button22"
+        android:layout_width="80dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/orange_border_rectangle"
+        android:backgroundTint="@color/orange"
+        android:text="Total leads"
+        android:textColor="@color/white"
+        android:textSize="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button232"
+        android:layout_width="80dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/orange_border_rectangle"
+        android:backgroundTint="@color/orange"
+        android:text="Team  Wise"
+        android:textColor="@color/white"
+        android:textSize="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView4"
+        app:layout_constraintEnd_toStartOf="@+id/button222"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button222"
+        android:layout_width="80dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/orange_border_rectangle"
+        android:backgroundTint="@color/orange"
+        android:text="Wise"
+        android:textColor="@color/white"
+        android:textSize="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

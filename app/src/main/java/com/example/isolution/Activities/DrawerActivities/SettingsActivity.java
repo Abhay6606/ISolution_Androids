@@ -1,4 +1,4 @@
-package com.example.isolution.Activities;
+package com.example.isolution.Activities.DrawerActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -13,8 +13,7 @@ import android.widget.TextView;
 
 import com.example.isolution.R;
 
-public class ProfileActivity extends AppCompatActivity {
-
+public class SettingsActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
     TextView setting,profile,nearbyMe,favourite,notification,promotion,help,home,logout;
@@ -22,7 +21,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_settings);
 
         drawerLayout=findViewById(R.id.drawerLayout);
         menu=findViewById(R.id.menu);
@@ -45,31 +44,32 @@ public class ProfileActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ProfileActivity.this, MainActivity2.class);            }
+                redirectActivity(SettingsActivity.this, MainActivity2.class);            }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ProfileActivity.this, SettingsActivity.class);
+                recreate();
             }
         });
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recreate();
+
+                redirectActivity(SettingsActivity.this, ProfileActivity.class);
             }
         });
         nearbyMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                redirectActivity(ProfileActivity.this, NearbyMeActivity.class);
+                redirectActivity(SettingsActivity.this, NearbyMeActivity.class);
             }
         });
         favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ProfileActivity.this, FavouriteActivity.class);
+                redirectActivity(SettingsActivity.this, FavouriteActivity.class);
 
             }
         });
@@ -77,12 +77,12 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                redirectActivity(ProfileActivity.this, NotificationActivity.class);}
+                redirectActivity(SettingsActivity.this, NotificationActivity.class);}
         });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ProfileActivity.this, LogoutActivity.class);
+                redirectActivity(SettingsActivity.this, LogoutActivity.class);
 
 
             }
@@ -90,13 +90,14 @@ public class ProfileActivity extends AppCompatActivity {
         promotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ProfileActivity.this, PromotionActivity.class);
+
+                redirectActivity(SettingsActivity.this, PromotionActivity.class);
             }
         });
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ProfileActivity.this, HelpActivity.class);
+                redirectActivity(SettingsActivity.this, HelpActivity.class);
 
             }
         });

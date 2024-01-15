@@ -1,4 +1,4 @@
-package com.example.isolution.Activities;
+package com.example.isolution.Activities.DrawerActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -12,6 +12,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.isolution.Activities.AllCategoriesActivity;
+import com.example.isolution.Activities.CallingDetailsActivity;
+import com.example.isolution.Activities.ContactLeadActivity;
+import com.example.isolution.Activities.ContectLeadTwo;
 import com.example.isolution.R;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -60,13 +64,24 @@ public class MainActivity2 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        allCategories.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(MainActivity2.this , AllCategoriesActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        cardLeadGroupDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity2.this , ContactLeadActivity.class);
+                startActivity(intent);
+            }
+        });
+        cardLeadDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity2.this , ContectLeadTwo.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
 
 
 

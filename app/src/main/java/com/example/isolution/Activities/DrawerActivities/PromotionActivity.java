@@ -1,4 +1,4 @@
-package com.example.isolution.Activities;
+package com.example.isolution.Activities.DrawerActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.isolution.R;
 
-public class LogoutActivity extends AppCompatActivity {
+public class PromotionActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
     TextView setting,profile,nearbyMe,favourite,notification,promotion,help,home,logout;
@@ -21,7 +21,7 @@ public class LogoutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logout);
+        setContentView(R.layout.activity_promotion);
 
         drawerLayout=findViewById(R.id.drawerLayout);
         menu=findViewById(R.id.menu);
@@ -44,56 +44,58 @@ public class LogoutActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(LogoutActivity.this, MainActivity2.class);            }
+                redirectActivity(PromotionActivity.this, MainActivity2.class);            }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(LogoutActivity.this, SettingsActivity.class);
+                redirectActivity(PromotionActivity.this, SettingsActivity.class);
             }
         });
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(LogoutActivity.this, ProfileActivity.class);
+
+                redirectActivity(PromotionActivity.this, ProfileActivity.class);
             }
         });
         nearbyMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(LogoutActivity.this, NearbyMeActivity.class);
+
+                redirectActivity(PromotionActivity.this, NearbyMeActivity.class);
             }
         });
         favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(LogoutActivity.this, FavouriteActivity.class);
+                redirectActivity(PromotionActivity.this, FavouriteActivity.class);
 
             }
         });
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(LogoutActivity.this, NotificationActivity.class);
-            }
+
+                redirectActivity(PromotionActivity.this, NotificationActivity.class);}
         });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recreate();
+                redirectActivity(PromotionActivity.this, LogoutActivity.class);
+
 
             }
         });
         promotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(LogoutActivity.this, PromotionActivity.class);
-            }
+                recreate();            }
         });
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(LogoutActivity.this, HelpActivity.class);
+                redirectActivity(PromotionActivity.this, HelpActivity.class);
 
             }
         });

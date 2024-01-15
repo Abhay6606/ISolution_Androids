@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.isolution.Activities.DrawerActivities.MainActivity2;
 import com.example.isolution.R;
 
 public class SignupActivity extends AppCompatActivity {

@@ -23,43 +23,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     TextView[] dots;
     ViewPagerAdapter viewPagerAdapter;
-    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-
-            setUpindicator(position);
-
-            if (position == 0) {
-
-                button.setText("Get Started");
-                button.setBackground(getDrawable(R.drawable.button_background));
-                textView.setText("A Unique & Adavance Tool for you\ncalling solutions Manage Your Call\nWith i-Solution");
-                constraintLayout.setBackgroundColor(getResources().getColor(R.color.pink));
-
-
-            } else if (position == 1) {
-                button.setText("NEXTStep");
-                button.setBackground(getDrawable(R.drawable.button_orange_background));
-                textView.setText("Convert Your Inquiries to Clients....\nand Manage & Maintain Your Clients\nwith I-Solutions");
-                constraintLayout.setBackgroundColor(getResources().getColor(R.color.purple_200));
-            } else if (position == 2) {
-                button.setText("Finish");
-                button.setBackground(getDrawable(R.drawable.button_background));
-                textView.setText("manage & Grow Your Business with\npalm, lets your working more\nproductive with i-solution");
-                constraintLayout.setBackgroundColor(getResources().getColor(R.color.orange));
-            }
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +62,47 @@ public class MainActivity extends AppCompatActivity {
         mSLideViewPager.addOnPageChangeListener(viewListener);
 
     }
+
+
+    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+
+            setUpindicator(position);
+
+            if (position == 0) {
+
+                button.setText("Get Started");
+                button.setBackground(getDrawable(R.drawable.button_background));
+                textView.setText("A Unique & Adavance Tool for you\ncalling solutions Manage Your Call\nWith i-Solution");
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.pink));
+
+
+            } else if (position == 1) {
+                button.setText("NEXTStep");
+                button.setBackground(getDrawable(R.drawable.button_orange_background));
+                textView.setText("Convert Your Inquiries to Clients....\nand Manage & Maintain Your Clients\nwith I-Solutions");
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.purple_200));
+            } else if (position == 2) {
+                button.setText("Finish");
+                button.setBackground(getDrawable(R.drawable.button_background));
+                textView.setText("manage & Grow Your Business with\npalm, lets your working more\nproductive with i-solution");
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.orange));
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
+
+
 
     public void setUpindicator(int position) {
 

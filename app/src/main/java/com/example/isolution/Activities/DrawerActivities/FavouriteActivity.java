@@ -1,4 +1,4 @@
-package com.example.isolution.Activities;
+package com.example.isolution.Activities.DrawerActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;

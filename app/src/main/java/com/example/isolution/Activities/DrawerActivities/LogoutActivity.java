@@ -1,4 +1,4 @@
-package com.example.isolution.Activities;
+package com.example.isolution.Activities.DrawerActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.isolution.R;
 
-public class HelpActivity extends AppCompatActivity {
+public class LogoutActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
     TextView setting,profile,nearbyMe,favourite,notification,promotion,help,home,logout;
@@ -21,19 +21,19 @@ public class HelpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
+        setContentView(R.layout.activity_logout);
 
         drawerLayout=findViewById(R.id.drawerLayout);
         menu=findViewById(R.id.menu);
         setting=findViewById(R.id.drwrSetting);
         profile=findViewById(R.id.drwrProfile);
         nearbyMe=findViewById(R.id.drerNearbyme);
-        logout=findViewById(R.id.drwrLogout);
         favourite=findViewById(R.id.drwrFavourite);
         notification=findViewById(R.id.drwrNotification);
         promotion=findViewById(R.id.drwrPromotion);
         help=findViewById(R.id.drwrHelp);
         home=findViewById(R.id.drwrHome);
+        logout=findViewById(R.id.drwrLogout);
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,55 +44,57 @@ public class HelpActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(HelpActivity.this, MainActivity2.class);            }
+                redirectActivity(LogoutActivity.this, MainActivity2.class);            }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(HelpActivity.this, SettingsActivity.class);
+                redirectActivity(LogoutActivity.this, SettingsActivity.class);
             }
         });
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(HelpActivity.this, ProfileActivity.class);
-            }
-        });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(HelpActivity.this, LogoutActivity.class);
+                redirectActivity(LogoutActivity.this, ProfileActivity.class);
             }
         });
         nearbyMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(HelpActivity.this, NearbyMeActivity.class);
+                redirectActivity(LogoutActivity.this, NearbyMeActivity.class);
             }
         });
         favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(HelpActivity.this, FavouriteActivity.class);
+                redirectActivity(LogoutActivity.this, FavouriteActivity.class);
 
             }
         });
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(HelpActivity.this, NotificationActivity.class);
+                redirectActivity(LogoutActivity.this, NotificationActivity.class);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recreate();
+
             }
         });
         promotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(HelpActivity.this, PromotionActivity.class);
+                redirectActivity(LogoutActivity.this, PromotionActivity.class);
             }
         });
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recreate();
+                redirectActivity(LogoutActivity.this, HelpActivity.class);
+
             }
         });
 

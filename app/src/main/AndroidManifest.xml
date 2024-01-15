@@ -15,28 +15,34 @@
         android:theme="@style/Theme.ISolution"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.HelpActivity"
+            android:name=".Activities.ContectLeadTwo"
             android:exported="false" />
         <activity
-            android:name=".Activities.LogoutActivity"
+            android:name=".Activities.ContactLeadActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.SettingsActivity"
+            android:name=".Activities.DrawerActivities.HelpActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.PromotionActivity"
+            android:name=".Activities.DrawerActivities.LogoutActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.NotificationActivity"
+            android:name=".Activities.DrawerActivities.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.FavouriteActivity"
+            android:name=".Activities.DrawerActivities.PromotionActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.NearbyMeActivity"
+            android:name=".Activities.DrawerActivities.NotificationActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.ProfileActivity"
+            android:name=".Activities.DrawerActivities.FavouriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DrawerActivities.NearbyMeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DrawerActivities.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.LoginActivity"
@@ -51,7 +57,7 @@
             android:name=".Activities.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.MainActivity2"
+            android:name=".Activities.DrawerActivities.MainActivity2"
             android:exported="false" />
         <activity
             android:name=".Activities.MainActivity"
