@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ContectLeadTwo">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/orange"
+            android:padding="15dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="257dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/topimagee" />
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="18dp"
+                        android:drawableLeft="@drawable/leadicon"
+                        android:drawablePadding="12dp"
+                        android:text="Lead Form"
+                        android:textColor="@color/orange"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
+                    <EditText
+                        android:id="@+id/textView224"
+                        android:layout_width="165dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/teal_border_corner"
+                        android:hint="First Name"
+                        android:padding="3dp"
+                        android:paddingStart="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+                    <EditText
+                        android:id="@+id/textView24"
+                        android:layout_width="125dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/teal_border_corner"
+                        android:hint="Last Name"
+                        android:padding="3dp"
+                        android:paddingStart="12dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+                    <EditText
+                        android:id="@+id/dfSCs"
+                        android:layout_width="300dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/teal_border_corner"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:padding="3dp"
+                        android:paddingStart="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView224" />
+
+                    <EditText
+                        android:id="@+id/gre"
+                        android:layout_width="300dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/teal_border_corner"
+                        android:hint="Contact Number"
+                        android:inputType="phone"
+                        android:padding="3dp"
+                        android:paddingStart="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dfSCs" />
+
+                    <EditText
+                        android:id="@+id/dfs"
+                        android:layout_width="300dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/teal_border_corner"
+                        android:hint="Reference"
+                        android:inputType="textEmailAddress"
+                        android:padding="3dp"
+                        android:paddingStart="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dfsas" />
+
+                    <EditText
+                        android:id="@+id/dfsas"
+                        android:layout_width="300dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/teal_border_corner"
+                        android:hint="City"
+                        android:padding="3dp"
+                        android:paddingStart="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/gre" />
+
+                    <EditText
+                        android:id="@+id/dsfsas"
+                        android:layout_width="300dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/teal_border_corner"
+                        android:hint="Categories"
+                        android:inputType="textEmailAddress"
+                        android:padding="3dp"
+                        android:paddingStart="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dfs" />
+
+                    <EditText
+                        android:id="@+id/dsfsaasas"
+                        android:layout_width="300dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/teal_border_corner"
+                        android:hint="Message"
+                        android:inputType="textEmailAddress"
+                        android:padding="3dp"
+                        android:paddingStart="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextText7" />
+
+                    <EditText
+                        android:id="@+id/editText"
+                        android:layout_width="300dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/teal_border_corner"
+                        android:hint="Status"
+                        android:padding="3dp"
+                        android:paddingStart="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dsfsas" />
+
+                    <EditText
+                        android:id="@+id/editTextText4"
+                        android:layout_width="300dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/teal_border_corner"
+                        android:hint="Lead Score"
+                        android:inputType="textEmailAddress"
+                        android:padding="3dp"
+                        android:paddingStart="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+                    <EditText
+                        android:id="@+id/editTextText6"
+                        android:layout_width="300dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/teal_border_corner"
+                        android:hint="About Lead"
+                        android:inputType="textEmailAddress"
+                        android:padding="3dp"
+                        android:paddingStart="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/button2"
+                        android:layout_width="120dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="102dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="50dp"
+                        android:background="@drawable/orange_border_rectangle"
+                        android:backgroundTint="@color/orange"
+                        android:text="Lead Details"
+                        android:textColor="@color/white"
+                        android:textSize="11dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dsfsaasas" />
+
+                    <EditText
+                        android:id="@+id/editTextText7"
+                        android:layout_width="300dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/teal_border_corner"
+                        android:hint="Sbuject"
+                        android:inputType="textEmailAddress"
+                        android:padding="3dp"
+                        android:paddingStart="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
+
+
