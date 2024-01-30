@@ -1,4 +1,4 @@
-package com.example.isolution.Activities;
+package com.example.isolution.Model;
 
 public class GetterSetter {
 

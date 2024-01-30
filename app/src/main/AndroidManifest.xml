@@ -15,7 +15,28 @@
         android:theme="@style/Theme.ISolution"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.ContectLeadTwo"
+            android:name=".Activities.DisposeLeadSecondActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DisposeLeadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LeadCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.EmployTeamDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.CallingTeamDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.CallingDetailMain"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.CalenderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ContectLeadForm"
             android:exported="false" />
         <activity
             android:name=".Activities.ContactLeadActivity"
@@ -57,7 +78,10 @@
             android:name=".Activities.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DrawerActivities.MainActivity2"
+            android:name=".Activities.DrawerActivities.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MainLeadActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.MainActivity"

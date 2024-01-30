@@ -44,7 +44,7 @@ public class LogoutActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(LogoutActivity.this, MainActivity2.class);            }
+                redirectActivity(LogoutActivity.this, HomeActivity.class);            }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override

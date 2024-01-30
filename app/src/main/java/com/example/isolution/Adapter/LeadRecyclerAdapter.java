@@ -1,6 +1,7 @@
 package com.example.isolution.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.isolution.Activities.GetterSetter;
+import com.example.isolution.Model.GetterSetter;
+import com.example.isolution.Activities.LeadCategoryActivity;
 import com.example.isolution.databinding.LeadRecyclerItemBinding;
 
 import java.util.ArrayList;
@@ -39,6 +41,14 @@ public class LeadRecyclerAdapter extends RecyclerView.Adapter<LeadRecyclerAdapte
         leadRecyclerItemBinding.itemCity.setText(arraylistposion.getCity());
         leadRecyclerItemBinding.itemCategory.setText(arraylistposion.getCategory());
         leadRecyclerItemBinding.itemStatus.setText(arraylistposion.getStatus());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, LeadCategoryActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
 
 
 

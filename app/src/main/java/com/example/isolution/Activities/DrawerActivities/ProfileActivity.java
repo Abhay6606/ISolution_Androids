@@ -45,7 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ProfileActivity.this, MainActivity2.class);            }
+                redirectActivity(ProfileActivity.this, HomeActivity.class);            }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override

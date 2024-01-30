@@ -44,7 +44,7 @@ public class PromotionActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(PromotionActivity.this, MainActivity2.class);            }
+                redirectActivity(PromotionActivity.this, HomeActivity.class);            }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override

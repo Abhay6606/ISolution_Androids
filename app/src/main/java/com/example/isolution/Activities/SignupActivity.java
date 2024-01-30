@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.isolution.Activities.DrawerActivities.MainActivity2;
+import com.example.isolution.Activities.DrawerActivities.HomeActivity;
 import com.example.isolution.R;
 
 public class SignupActivity extends AppCompatActivity {
@@ -25,7 +25,7 @@ public class SignupActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignupActivity.this, MainActivity2.class);
+                Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }

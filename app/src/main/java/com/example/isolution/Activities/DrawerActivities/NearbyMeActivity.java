@@ -45,7 +45,7 @@ public class NearbyMeActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(NearbyMeActivity.this, MainActivity2.class);            }
+                redirectActivity(NearbyMeActivity.this, HomeActivity.class);            }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override

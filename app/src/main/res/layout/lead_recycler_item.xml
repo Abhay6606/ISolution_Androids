@@ -7,7 +7,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/recievedCallsCard"
         android:layout_width="300dp"
         android:layout_height="111dp"
         android:layout_marginStart="32dp"
@@ -117,9 +117,9 @@
         app:cardCornerRadius="3dp"
         android:backgroundTint="@color/orange"
         android:padding="3dp"
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        app:layout_constraintBottom_toBottomOf="@+id/recievedCallsCard"
+        app:layout_constraintEnd_toEndOf="@+id/recievedCallsCard"
+        app:layout_constraintTop_toBottomOf="@+id/recievedCallsCard">
 
         <TextView
             android:layout_width="wrap_content"
@@ -135,10 +135,10 @@
         android:layout_height="46dp"
         android:backgroundTint="#DF1C0D"
         app:cardCornerRadius="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout2">
+        app:layout_constraintBottom_toBottomOf="@+id/recievedCallsCard"
+        app:layout_constraintEnd_toStartOf="@+id/recievedCallsCard"
+        app:layout_constraintStart_toStartOf="@+id/recievedCallsCard"
+        app:layout_constraintTop_toTopOf="@+id/recievedCallsCard">
 
         <TextView
             android:layout_width="wrap_content"

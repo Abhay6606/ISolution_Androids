@@ -44,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SettingsActivity.this, MainActivity2.class);            }
+                redirectActivity(SettingsActivity.this, HomeActivity.class);            }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override

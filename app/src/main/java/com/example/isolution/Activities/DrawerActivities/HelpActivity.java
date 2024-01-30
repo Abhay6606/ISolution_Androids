@@ -44,7 +44,7 @@ public class HelpActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(HelpActivity.this, MainActivity2.class);            }
+                redirectActivity(HelpActivity.this, HomeActivity.class);            }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Bundle;
 
 import com.example.isolution.Adapter.LeadRecyclerAdapter;
-import com.example.isolution.R;
+import com.example.isolution.Model.GetterSetter;
 import com.example.isolution.databinding.ActivityContactLeadBinding;
 
 import java.util.ArrayList;

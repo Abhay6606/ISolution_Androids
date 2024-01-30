@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:openDrawer="start"
-    tools:context=".Activities.DrawerActivities.MainActivity2">
+    tools:context=".Activities.DrawerActivities.HomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -216,7 +216,7 @@
                             android:layout_height="22dp"
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="132dp"
-                            android:src="@drawable/calling"
+                            android:src="@drawable/outgoing"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -319,10 +319,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/leadbtn"
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="17dp"
                     android:background="@drawable/sign_up_edittext_background"
@@ -338,10 +338,12 @@
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="34dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="125dp"
+                    android:layout_width="25dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="100dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="3dp"
+                    app:layout_constraintEnd_toStartOf="@+id/leadbtn"
                     app:layout_constraintStart_toEndOf="@+id/textView8"
                     app:layout_constraintTop_toBottomOf="@+id/cardView3"
                     app:srcCompat="@drawable/calendartwo" />
@@ -349,7 +351,7 @@
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_height="35dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:scaleType="fitXY"
@@ -357,24 +359,23 @@
                     app:layout_constraintTop_toBottomOf="@+id/cardView3"
                     app:srcCompat="@drawable/calendar" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="17dp"
                     android:background="@drawable/sign_up_edittext_background"
                     android:backgroundTint="@color/orange"
                     android:padding="2dp"
                     android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
                     android:text="Set Reminder"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
                     app:layout_constraintTop_toBottomOf="@+id/cardView3"
-                    tools:textColor="@color/white" />
+                    tools:foregroundGravity="center" />
 
                 <TextView
                     android:id="@+id/textView13"
@@ -426,7 +427,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
                 <TextView
-                    android:id="@+id/allCategoriesText"
+                    android:id="@+id/showAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -553,7 +554,7 @@
                     app:cardElevation="3dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/cardView5"
-                    app:layout_constraintTop_toBottomOf="@+id/allCategoriesText">
+                    app:layout_constraintTop_toBottomOf="@+id/showAll">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -605,19 +606,19 @@
                     android:layout_marginEnd="21dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView5">
+                    app:layout_constraintTop_toBottomOf="@+id/allCategories">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardFollowupDetails"
                         android:layout_width="90dp"
                         android:layout_height="100dp"
-                        android:layout_below="@+id/cardCallingDetails"
+                        android:layout_below="@+id/cardNewLeads"
                         android:layout_alignParentStart="true"
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="15dp"
                         app:cardBackgroundColor="@color/orange"
                         app:cardCornerRadius="15dp"
-                        app:cardElevation="5dp" >
+                        app:cardElevation="5dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -626,11 +627,11 @@
 
                             <ImageView
                                 android:id="@+id/imageView23"
-                                android:layout_width="60dp"
-                                android:layout_height="40dp"
-                                android:layout_marginStart="16dp"
+                                android:layout_width="26dp"
+                                android:layout_height="34dp"
+                                android:layout_marginStart="32dp"
                                 android:layout_marginTop="8dp"
-                                android:layout_marginEnd="14dp"
+                                android:layout_marginEnd="32dp"
                                 android:src="@drawable/followup"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -652,7 +653,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardCallingDetails"
+                        android:id="@+id/cardNewLeads"
                         android:layout_width="90dp"
                         android:layout_height="100dp"
                         android:layout_alignParentStart="true"
@@ -668,11 +669,13 @@
 
                             <ImageView
                                 android:id="@+id/imageView20"
-                                android:layout_width="69dp"
-                                android:layout_height="40dp"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="8dp"
+                                android:layout_width="26dp"
+                                android:layout_height="34dp"
+                                android:layout_marginStart="32dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginEnd="32dp"
                                 android:src="@drawable/callingdeta"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -693,12 +696,12 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardLeadDetails"
+                        android:id="@+id/cardLeadInfo"
                         android:layout_width="90dp"
                         android:layout_height="100dp"
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="27dp"
-                        android:layout_toEndOf="@+id/cardCallingDetails"
+                        android:layout_toEndOf="@+id/cardNewLeads"
                         app:cardBackgroundColor="@color/orange"
                         app:cardCornerRadius="15dp"
                         app:cardElevation="5dp"
@@ -712,11 +715,11 @@
 
                             <ImageView
                                 android:id="@+id/imageView21"
-                                android:layout_width="59dp"
-                                android:layout_height="40dp"
-                                android:layout_marginStart="16dp"
+                                android:layout_width="26dp"
+                                android:layout_height="34dp"
+                                android:layout_marginStart="32dp"
                                 android:layout_marginTop="8dp"
-                                android:layout_marginEnd="15dp"
+                                android:layout_marginEnd="32dp"
                                 android:src="@drawable/leaddetails"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -746,7 +749,7 @@
                         android:layout_marginEnd="0dp"
                         app:cardBackgroundColor="@color/orange"
                         app:cardCornerRadius="15dp"
-                        app:cardElevation="5dp" >
+                        app:cardElevation="5dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -755,14 +758,13 @@
 
                             <ImageView
                                 android:id="@+id/imageView22"
-                                android:layout_width="60dp"
-                                android:layout_height="40dp"
-                                android:layout_marginStart="16dp"
+                                android:layout_width="26dp"
+                                android:layout_height="34dp"
+                                android:layout_marginStart="32dp"
                                 android:layout_marginTop="8dp"
-                                android:layout_marginEnd="14dp"
+                                android:layout_marginEnd="32dp"
                                 android:src="@drawable/teamdetails"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -785,7 +787,7 @@
                         android:id="@+id/cardCallRecordingDetails"
                         android:layout_width="90dp"
                         android:layout_height="100dp"
-                        android:layout_below="@+id/cardLeadDetails"
+                        android:layout_below="@+id/cardLeadInfo"
                         android:layout_marginStart="27dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginEnd="26dp"
@@ -793,7 +795,7 @@
                         android:layout_toEndOf="@+id/cardFollowupDetails"
                         app:cardBackgroundColor="@color/orange"
                         app:cardCornerRadius="15dp"
-                        app:cardElevation="5dp" >
+                        app:cardElevation="5dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -802,11 +804,11 @@
 
                             <ImageView
                                 android:id="@+id/imageView24"
-                                android:layout_width="60dp"
-                                android:layout_height="40dp"
-                                android:layout_marginStart="16dp"
+                                android:layout_width="26dp"
+                                android:layout_height="34dp"
+                                android:layout_marginStart="32dp"
                                 android:layout_marginTop="8dp"
-                                android:layout_marginEnd="12dp"
+                                android:layout_marginEnd="30dp"
                                 android:src="@drawable/callrecording"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -836,7 +838,7 @@
                         android:layout_marginEnd="2dp"
                         app:cardBackgroundColor="@color/orange"
                         app:cardCornerRadius="15dp"
-                        app:cardElevation="5dp" >
+                        app:cardElevation="5dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -845,11 +847,11 @@
 
                             <ImageView
                                 android:id="@+id/imageView25"
-                                android:layout_width="60dp"
-                                android:layout_height="40dp"
-                                android:layout_marginStart="16dp"
+                                android:layout_width="26dp"
+                                android:layout_height="34dp"
+                                android:layout_marginStart="32dp"
                                 android:layout_marginTop="8dp"
-                                android:layout_marginEnd="14dp"
+                                android:layout_marginEnd="32dp"
                                 android:src="@drawable/agentdetails"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -941,6 +943,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/i_soliutin" />
+
+                <TextView
+                    android:id="@+id/allCategories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="All Categories"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
