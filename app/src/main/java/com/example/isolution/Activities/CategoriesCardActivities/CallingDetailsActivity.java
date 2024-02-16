@@ -32,22 +32,24 @@ public class CallingDetailsActivity extends AppCompatActivity {
     ActivityCallingDetailsBinding callingDetailsBinding;
     ArrayList<CallLogsModelGetter> arrayList = new ArrayList<>();
     CallingDetailAdapter adapter;
-//gfjhfhfjh
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         callingDetailsBinding = ActivityCallingDetailsBinding.inflate(getLayoutInflater());
         setContentView(callingDetailsBinding.getRoot());
+
         askPermission();
 
 
-//        CallingDetailsGetterSetter pack = new CallingDetailsGetterSetter("https://instagram.fdel27-5.fna.fbcdn.net/v/t51.2885-19/269382591_431678785170231_3739845402388046538_n.jpg?stp=dst-jpg_s150x150&efg=e30&_nc_ht=instagram.fdel27-5.fna.fbcdn.net&_nc_cat=103&_nc_ohc=2f-l3xXFQsQAX-1yEGN&edm=ABmJApABAAAA&ccb=7-5&oh=00_AfDyr8nPqNe05uvvv2TCUZ3wk-ob5pZKi3byudyAQ2txtA&oe=65B80EAD&_nc_sid=b41fef", "Abhay Bhadauria", "6398960435", "23m12s");
-//        arrayList.add(pack);
+        // Adapter for RecyclerView (Access Contect logs)
 
         callingDetailsBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-         adapter = new CallingDetailAdapter(this, arrayList);
+        adapter = new CallingDetailAdapter(this, arrayList);
         callingDetailsBinding.recyclerView.setAdapter(adapter);
+        //===========================================================================================
+
+        // Click Listeners
         callingDetailsBinding.startDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,11 +95,12 @@ public class CallingDetailsActivity extends AppCompatActivity {
         datePicker.show(getSupportFragmentManager(), "DATE_PICKER");
     }
 
+    // Code for Ask Permission for Call Logs
     private void askPermission() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_CALL_LOG},1000);
-        }else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALL_LOG}, 1000);
+        } else {
 
             List<CallLogsModelGetter> details = getCallDetails();
             arrayList = (ArrayList<CallLogsModelGetter>) details;
@@ -105,14 +108,15 @@ public class CallingDetailsActivity extends AppCompatActivity {
             Log.d("DETAILS", details.toString());
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode==1000){
-            if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                List<CallLogsModelGetter>  details = getCallDetails();
+        if (requestCode == 1000) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                List<CallLogsModelGetter> details = getCallDetails();
                 arrayList = (ArrayList<CallLogsModelGetter>) details;
-                Log.d("DETAILS",details.toString());
+                Log.d("DETAILS", details.toString());
             }
         }
     }
@@ -120,9 +124,8 @@ public class CallingDetailsActivity extends AppCompatActivity {
     private List<CallLogsModelGetter> getCallDetails() {
 
         ArrayList<CallLogsModelGetter> logListArrayList = new ArrayList<>();
-        Cursor managedCursor = managedQuery(CallLog.Calls.CONTENT_URI, null,
-                null, null, null);
-        int name=managedCursor.getColumnIndex(CallLog.Calls.CACHED_NAME);
+        Cursor managedCursor = managedQuery(CallLog.Calls.CONTENT_URI, null, null, null, null);
+        int name = managedCursor.getColumnIndex(CallLog.Calls.CACHED_NAME);
         int number = managedCursor.getColumnIndex(CallLog.Calls.NUMBER);
         int type = managedCursor.getColumnIndex(CallLog.Calls.TYPE);
         int date = managedCursor.getColumnIndex(CallLog.Calls.DATE);
@@ -130,12 +133,13 @@ public class CallingDetailsActivity extends AppCompatActivity {
 //        sb.append("Call Details :");
 
         while (managedCursor.moveToNext()) {
-            String callerName=managedCursor.getString(name);
+            String callerName = managedCursor.getString(name);
             String phNumber = managedCursor.getString(number);
             String callType = managedCursor.getString(type);
             String callDate = managedCursor.getString(date);
             Date callDayTime = new Date(Long.valueOf(callDate));
             String callDuration = managedCursor.getString(duration);
+
             String dir = null;
             int dircode = Integer.parseInt(callType);
             switch (dircode) {
@@ -152,7 +156,7 @@ public class CallingDetailsActivity extends AppCompatActivity {
                     break;
             }
 
-            CallLogsModelGetter pack = new CallLogsModelGetter(callerName,phNumber,dir,callDate,callDayTime.toString(),callDuration);
+            CallLogsModelGetter pack = new CallLogsModelGetter(callerName, phNumber, dir, callDate, callDayTime.toString(), callDuration);
             logListArrayList.add(pack);
 
 
@@ -166,4 +170,4 @@ public class CallingDetailsActivity extends AppCompatActivity {
         return logListArrayList;
     }
 }
-//====
+

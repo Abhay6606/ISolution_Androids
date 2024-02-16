@@ -38,8 +38,8 @@ public class CallingDetailAdapter extends RecyclerView.Adapter<CallingDetailAdap
         CallLogsModelGetter arraylistPosition=arrayList.get(position);
         callingDetailsItemBinding.name.setText(arraylistPosition.getCallerName());
         callingDetailsItemBinding.number.setText(arraylistPosition.getPhoneNumber());
-        callingDetailsItemBinding.time.setText(arraylistPosition.getCallTime());
-        callingDetailsItemBinding.callDuration.setText(arraylistPosition.getCallduration());
+        callingDetailsItemBinding.time.setText(arraylistPosition.getCallduration());
+        callingDetailsItemBinding.callDuration.setText(arraylistPosition.getCallTime());
 
 //        Picasso.get().load(arraylistPosition.getImage()).into(callingDetailsItemBinding.image);
     }
@@ -50,8 +50,7 @@ public class CallingDetailAdapter extends RecyclerView.Adapter<CallingDetailAdap
     }
 
     @Override
-    public int getItemViewType(int position) {
-        return super.getItemViewType(position);
+    public int getItemViewType(int position) {return super.getItemViewType(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
