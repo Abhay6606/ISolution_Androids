@@ -1,85 +1,82 @@
 package com.example.isolution.Activities.DrawerActivities;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import com.example.isolution.Activities.ChatActivity;
+import com.example.isolution.Activities.FolderActivity;
 import com.example.isolution.R;
+import com.example.isolution.databinding.ActivityProfileBinding;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    DrawerLayout drawerLayout;
-    ImageView menu;
-    TextView setting,profile,nearbyMe,favourite,notification,promotion,help,home,logout;
+    ActivityProfileBinding profileBinding;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        profileBinding = ActivityProfileBinding.inflate(getLayoutInflater());
+        setContentView(profileBinding.getRoot());
 
-        drawerLayout=findViewById(R.id.drawerLayout);
-        menu=findViewById(R.id.menu);
-        setting=findViewById(R.id.drwrSetting);
-        profile=findViewById(R.id.drwrProfile);
-        nearbyMe=findViewById(R.id.drerNearbyme);
-        favourite=findViewById(R.id.drwrFavourite);
-        notification=findViewById(R.id.drwrNotification);
-        promotion=findViewById(R.id.drwrPromotion);
-        help=findViewById(R.id.drwrHelp);
-        home=findViewById(R.id.drwrHome);
-        logout=findViewById(R.id.drwrLogout);
 
-        menu.setOnClickListener(new View.OnClickListener() {
+        profileBinding.includeAppBar.menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDrawer(drawerLayout);
+                openDrawer(profileBinding.drawerLayout);
             }
         });
-        home.setOnClickListener(new View.OnClickListener() {
+        profileBinding.includeDrawer.drwrHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ProfileActivity.this, HomeActivity.class);            }
+                redirectActivity(ProfileActivity.this, HomeActivity.class);
+            }
         });
-        setting.setOnClickListener(new View.OnClickListener() {
+        profileBinding.includeDrawer.drwrSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(ProfileActivity.this, SettingsActivity.class);
             }
         });
-        profile.setOnClickListener(new View.OnClickListener() {
+        profileBinding.includeDrawer.drwrProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recreate();
             }
         });
-        nearbyMe.setOnClickListener(new View.OnClickListener() {
+        profileBinding.includeDrawer.drerNearbyme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 redirectActivity(ProfileActivity.this, NearbyMeActivity.class);
             }
         });
-        favourite.setOnClickListener(new View.OnClickListener() {
+        profileBinding.includeDrawer.drwrFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(ProfileActivity.this, FavouriteActivity.class);
 
             }
         });
-        notification.setOnClickListener(new View.OnClickListener() {
+        profileBinding.includeDrawer.drwrNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                redirectActivity(ProfileActivity.this, NotificationActivity.class);}
+                redirectActivity(ProfileActivity.this, NotificationActivity.class);
+            }
         });
-        logout.setOnClickListener(new View.OnClickListener() {
+        profileBinding.includeDrawer.drwrLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(ProfileActivity.this, LogoutActivity.class);
@@ -87,13 +84,13 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
-        promotion.setOnClickListener(new View.OnClickListener() {
+        profileBinding.includeDrawer.drwrPromotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(ProfileActivity.this, PromotionActivity.class);
             }
         });
-        help.setOnClickListener(new View.OnClickListener() {
+        profileBinding.includeDrawer.drwrHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(ProfileActivity.this, HelpActivity.class);
@@ -101,17 +98,50 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+
+        //  Code for Bottom Navigaion Bar
+
+        profileBinding.includeBottomNavigationBar.bottomNavigationView.setBackground(null);
+        profileBinding.includeBottomNavigationBar.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.setting) {
+                    redirectActivity(ProfileActivity.this, SettingsActivity.class);
+                } else if (item.getItemId() == R.id.folder) {
+                    redirectActivity(ProfileActivity.this, FolderActivity.class);
+                } else if (item.getItemId() == R.id.comment) {
+                    redirectActivity(ProfileActivity.this, ChatActivity.class);
+                } else if (item.getItemId() == R.id.profile) {
+                    Toast.makeText(ProfileActivity.this, "you Are already on Profile Activity", Toast.LENGTH_SHORT).show();
+                } else if (item.getItemId() == R.id.homee) {
+                    redirectActivity(ProfileActivity.this, HomeActivity.class);
+                }
+                return true;
+            }
+        });
+        profileBinding.includeBottomNavigationBar.homebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ProfileActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
-    public static void openDrawer(DrawerLayout drawerLayout){
+
+    public static void openDrawer(DrawerLayout drawerLayout) {
         drawerLayout.openDrawer(GravityCompat.START);
     }
-    public static void closedDrawer(DrawerLayout drawerLayout){
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+
+    public static void closedDrawer(DrawerLayout drawerLayout) {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
-    public static void redirectActivity(Activity activity, Class secondactivity){
-        Intent intent=new Intent(activity,secondactivity);
+
+    public static void redirectActivity(Activity activity, Class secondactivity) {
+        Intent intent = new Intent(activity, secondactivity);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
         activity.finish();
@@ -120,6 +150,6 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        closedDrawer(drawerLayout);
+        closedDrawer(profileBinding.drawerLayout);
     }
 }

@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+
 
     <application
         android:allowBackup="true"
@@ -15,31 +18,37 @@
         android:theme="@style/Theme.ISolution"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.DisposeLeadSecondActivity"
+            android:name=".Activities.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DisposeLeadActivity"
+            android:name=".Activities.FolderActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.LeadCategoryActivity"
+            android:name=".Activities.CategoriesCardActivities.DisposeLeadSecondActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.EmployTeamDetails"
+            android:name=".Activities.CategoriesCardActivities.DisposeLeadActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.CallingTeamDetails"
+            android:name=".Activities.CategoriesCardActivities.LeadCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.CallingDetailMain"
+            android:name=".Activities.CategoriesCardActivities.EmployTeamDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.CategoriesCardActivities.CallingTeamDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.CategoriesCardActivities.CallingDetailMain"
             android:exported="false" />
         <activity
             android:name=".Activities.CalenderActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.ContectLeadForm"
+            android:name=".Activities.CategoriesCardActivities.ContectLeadForm"
             android:exported="false" />
         <activity
-            android:name=".Activities.ContactLeadActivity"
+            android:name=".Activities.CategoriesCardActivities.ContactLeadActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.DrawerActivities.HelpActivity"
@@ -69,7 +78,7 @@
             android:name=".Activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.CallingDetailsActivity"
+            android:name=".Activities.CategoriesCardActivities.CallingDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.AllCategoriesActivity"
@@ -81,7 +90,7 @@
             android:name=".Activities.DrawerActivities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.MainLeadActivity"
+            android:name=".Activities.CategoriesCardActivities.MainLeadActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.MainActivity"

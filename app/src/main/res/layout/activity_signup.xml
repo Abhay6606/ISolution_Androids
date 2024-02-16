@@ -70,7 +70,7 @@
                 app:srcCompat="@drawable/i_soliutin" />
 
             <EditText
-                android:id="@+id/editTextText"
+                android:id="@+id/userName"
                 android:layout_width="295dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="22dp"
@@ -104,10 +104,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.727"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+                app:layout_constraintTop_toBottomOf="@+id/userName" />
 
             <EditText
-                android:id="@+id/editTextText3"
+                android:id="@+id/password"
                 android:layout_width="295dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="25dp"
@@ -133,7 +133,7 @@
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText3">
+                app:layout_constraintTop_toBottomOf="@+id/password">
 
 
                 <RadioButton
@@ -169,7 +169,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/loginbtn"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:elevation="14dp"
@@ -202,7 +202,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+        app:layout_constraintTop_toBottomOf="@+id/loginbtn" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/appCompatButton"

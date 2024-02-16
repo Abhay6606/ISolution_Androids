@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.isolution.Model.GetterSetter;
-import com.example.isolution.Activities.LeadCategoryActivity;
+import com.example.isolution.Activities.CategoriesCardActivities.LeadCategoryActivity;
 import com.example.isolution.databinding.LeadRecyclerItemBinding;
 
 import java.util.ArrayList;

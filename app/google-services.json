@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "133105604107",
+    "project_id": "isolution-50934",
+    "storage_bucket": "isolution-50934.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133105604107:android:13cc5736d60afbcd73990e",
+        "android_client_info": {
+          "package_name": "com.example.isolution"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd9YWAl2CkXPSTPYrFEWYhJrzF4Mss2zQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

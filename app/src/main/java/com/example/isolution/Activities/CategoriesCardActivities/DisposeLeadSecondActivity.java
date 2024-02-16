@@ -1,4 +1,4 @@
-package com.example.isolution.Activities;
+package com.example.isolution.Activities.CategoriesCardActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.isolution.R;
 import com.example.isolution.databinding.ActivityDisposeLeadSecondBinding;
 
 public class DisposeLeadSecondActivity extends AppCompatActivity {

@@ -1,7 +1,7 @@
 package com.example.isolution.Model;
 
 public class CallingDetailsGetterSetter {
-    String image,name,number,time;
+    String  image,name,number,time;
 
     public CallingDetailsGetterSetter(String image, String name, String number, String time) {
         this.image = image;

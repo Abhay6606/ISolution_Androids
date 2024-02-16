@@ -12,7 +12,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/appbar_main" />
+        <include layout="@layout/appbar_main"
+            android:id="@+id/includeAppBar"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,6 +23,8 @@
             android:textSize="32dp"/>
 
     </LinearLayout>
+    <include layout="@layout/bottom_navigation_bar"
+        android:id="@+id/includeBottomNavigationBar"/>
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="match_parent"
@@ -29,7 +32,8 @@
         android:layout_gravity="start">
 
         <include
-            layout="@layout/header_layout"/>
+            layout="@layout/header_layout"
+            android:id="@+id/includeDrawer"/>
 
     </RelativeLayout>
 

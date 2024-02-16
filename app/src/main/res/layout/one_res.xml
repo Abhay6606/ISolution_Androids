@@ -13,17 +13,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bgtwo" />
+        app:srcCompat="@drawable/bgthree" />
 
     <TextView
         android:id="@+id/titlefirst"
-        android:layout_width="162dp"
+        android:layout_width="wrap_content"
         android:layout_height="46dp"
-        android:layout_marginStart="112dp"
         android:layout_marginTop="52dp"
         android:text="Welcome!"
         android:textColor="@color/white"
         android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/titleImage" />
 
@@ -31,9 +31,9 @@
         android:id="@+id/imagee"
         android:layout_width="219dp"
         android:layout_height="216dp"
-        android:layout_marginStart="60dp"
         android:layout_marginTop="31dp"
-        app:layout_constraintStart_toStartOf="@+id/titleImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titlefirst"
         app:srcCompat="@drawable/topimagee" />
 

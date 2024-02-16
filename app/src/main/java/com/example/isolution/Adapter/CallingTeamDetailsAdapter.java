@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.isolution.Activities.EmployTeamDetails;
+import com.example.isolution.Activities.CategoriesCardActivities.EmployTeamDetails;
 import com.example.isolution.Model.CallingTeamDetailsGetterSetter;
 import com.example.isolution.databinding.CallingTeamdetailsItemBinding;
 import com.squareup.picasso.Picasso;

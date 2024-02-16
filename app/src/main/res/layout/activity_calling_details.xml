@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.CallingDetailsActivity">
+    tools:context=".Activities.CategoriesCardActivities.CallingDetailsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -21,11 +21,11 @@
         android:id="@+id/cardView13"
         android:layout_width="329dp"
         android:layout_height="182dp"
-        android:layout_marginEnd="16dp"
         app:cardBackgroundColor="@color/orange"
         app:cardCornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -104,20 +104,20 @@
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Total"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView54" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView27" />
 
     <ImageView
         android:id="@+id/imageView14"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView13"
         app:srcCompat="@drawable/incoming" />
@@ -159,60 +159,53 @@
 
         android:id="@+id/imageView28"
         android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="3dp"
         android:scaleType="fitXY"
-        app:layout_constraintEnd_toStartOf="@+id/textView55"
+        app:layout_constraintEnd_toStartOf="@+id/endDate"
         app:layout_constraintTop_toBottomOf="@+id/imageView15"
         app:srcCompat="@drawable/calendar" />
 
-    <TextView
-
-        android:id="@+id/textView54"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startDate"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/sign_up_edittext_background"
         android:backgroundTint="@color/orange"
-        android:padding="2dp"
         android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-
+        android:paddingRight="10dp"
         android:text="Start Date"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/imageView27"
-        app:layout_constraintTop_toBottomOf="@+id/textView53"
-        tools:padding="5dp"
-        tools:textColor="@color/white" />
+        app:layout_constraintTop_toBottomOf="@+id/textView53" />
 
     <ImageView
 
         android:id="@+id/imageView27"
         android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView53"
         app:srcCompat="@drawable/calendar" />
 
-    <TextView
-
-        android:id="@+id/textView55"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/endDate"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/sign_up_edittext_background"
         android:backgroundTint="@color/orange"
         android:padding="2dp"
         android:paddingLeft="10dp"
-
         android:paddingTop="5dp"
         android:text="End Date"
         android:textAlignment="center"
@@ -227,9 +220,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="379dp"
         android:layout_height="396dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />

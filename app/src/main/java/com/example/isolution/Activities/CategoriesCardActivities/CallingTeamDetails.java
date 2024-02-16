@@ -1,4 +1,4 @@
-package com.example.isolution.Activities;
+package com.example.isolution.Activities.CategoriesCardActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.isolution.Adapter.CallingTeamDetailsAdapter;
 import com.example.isolution.Model.CallingTeamDetailsGetterSetter;
@@ -24,7 +23,7 @@ public class CallingTeamDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        callDetailsAppbarBinding = CallDetailsAppbarBinding.inflate(getLayoutInflater());
+
         callingTeamDetailsBinding=ActivityCallingTeamDetailsBinding.inflate(getLayoutInflater());
         setContentView(callingTeamDetailsBinding.getRoot());
         
@@ -33,7 +32,7 @@ public class CallingTeamDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(CallingTeamDetails.this,CallingDetailMain.class);
+                Intent intent=new Intent(CallingTeamDetails.this, CallingDetailMain.class);
                 startActivity(intent);
                 finish();
 

@@ -1,5 +1,6 @@
 package com.example.isolution.Activities.DrawerActivities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -7,79 +8,88 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.isolution.Activities.ChatActivity;
+import com.example.isolution.Activities.FolderActivity;
 import com.example.isolution.R;
+import com.example.isolution.databinding.ActivitySettingsBinding;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class SettingsActivity extends AppCompatActivity {
-    DrawerLayout drawerLayout;
-    ImageView menu;
-    TextView setting,profile,nearbyMe,favourite,notification,promotion,help,home,logout;
+
+    ActivitySettingsBinding settingsBinding;
+//    DrawerLayout drawerLayout;
+//    ImageView menu;
+//    TextView setting,profile,nearbyMe,favourite,notification,promotion,help,home,logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        settingsBinding=ActivitySettingsBinding.inflate(getLayoutInflater());
+        setContentView(settingsBinding.getRoot());
 
-        drawerLayout=findViewById(R.id.drawerLayout);
-        menu=findViewById(R.id.menu);
-        setting=findViewById(R.id.drwrSetting);
-        profile=findViewById(R.id.drwrProfile);
-        nearbyMe=findViewById(R.id.drerNearbyme);
-        favourite=findViewById(R.id.drwrFavourite);
-        notification=findViewById(R.id.drwrNotification);
-        promotion=findViewById(R.id.drwrPromotion);
-        help=findViewById(R.id.drwrHelp);
-        home=findViewById(R.id.drwrHome);
-        logout=findViewById(R.id.drwrLogout);
+//        drawerLayout=findViewById(R.id.drawerLayout);
+//        menu=findViewById(R.id.menu);
+//        setting=findViewById(R.id.drwrSetting);
+//        profile=findViewById(R.id.drwrProfile);
+//        nearbyMe=findViewById(R.id.drerNearbyme);
+//        favourite=findViewById(R.id.drwrFavourite);
+//        notification=findViewById(R.id.drwrNotification);
+//        promotion=findViewById(R.id.drwrPromotion);
+//        help=findViewById(R.id.drwrHelp);
+//        home=findViewById(R.id.drwrHome);
+//        logout=findViewById(R.id.drwrLogout);
 
-        menu.setOnClickListener(new View.OnClickListener() {
+        settingsBinding.includeAppBar.menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDrawer(drawerLayout);
+                openDrawer(settingsBinding.drawerLayout);
             }
         });
-        home.setOnClickListener(new View.OnClickListener() {
+        settingsBinding.includeDrawer.drwrHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingsActivity.this, HomeActivity.class);            }
         });
-        setting.setOnClickListener(new View.OnClickListener() {
+        settingsBinding.includeDrawer.drwrSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recreate();
             }
         });
-        profile.setOnClickListener(new View.OnClickListener() {
+        settingsBinding.includeDrawer.drwrProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 redirectActivity(SettingsActivity.this, ProfileActivity.class);
             }
         });
-        nearbyMe.setOnClickListener(new View.OnClickListener() {
+        settingsBinding.includeDrawer.drerNearbyme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 redirectActivity(SettingsActivity.this, NearbyMeActivity.class);
             }
         });
-        favourite.setOnClickListener(new View.OnClickListener() {
+        settingsBinding.includeDrawer.drwrFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingsActivity.this, FavouriteActivity.class);
 
             }
         });
-        notification.setOnClickListener(new View.OnClickListener() {
+        settingsBinding.includeDrawer.drwrNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 redirectActivity(SettingsActivity.this, NotificationActivity.class);}
         });
-        logout.setOnClickListener(new View.OnClickListener() {
+        settingsBinding.includeDrawer.drwrLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingsActivity.this, LogoutActivity.class);
@@ -87,18 +97,49 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
-        promotion.setOnClickListener(new View.OnClickListener() {
+        settingsBinding.includeDrawer.drwrPromotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 redirectActivity(SettingsActivity.this, PromotionActivity.class);
             }
         });
-        help.setOnClickListener(new View.OnClickListener() {
+        settingsBinding.includeDrawer.drwrHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingsActivity.this, HelpActivity.class);
 
+            }
+        });
+
+
+
+        //  Code for Bottom Navigaion Bar
+
+        settingsBinding.includeBottomNavigationBar.bottomNavigationView.setBackground(null);
+        settingsBinding.includeBottomNavigationBar.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId()==R.id.setting){
+                    Toast.makeText(SettingsActivity.this, "you Are already on Setting Activity", Toast.LENGTH_SHORT).show();
+                } else if (item.getItemId()==R.id.folder) {
+                    redirectActivity(SettingsActivity.this, FolderActivity.class);
+                } else if (item.getItemId()==R.id.comment) {
+                    redirectActivity(SettingsActivity.this, ChatActivity.class);
+                } else if (item.getItemId()==R.id.profile) {
+                    redirectActivity(SettingsActivity.this, ProfileActivity.class);
+                } else if (item.getItemId()==R.id.homee) {
+                    redirectActivity(SettingsActivity.this, HomeActivity.class);
+                }
+                return true;
+            }
+        });
+        settingsBinding.includeBottomNavigationBar.homebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SettingsActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -121,6 +162,6 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        closedDrawer(drawerLayout);
+        closedDrawer(settingsBinding.drawerLayout);
     }
 }

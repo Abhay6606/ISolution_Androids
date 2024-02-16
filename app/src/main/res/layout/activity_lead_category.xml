@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.LeadCategoryActivity">
+    tools:context=".Activities.CategoriesCardActivities.LeadCategoryActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,11 +21,11 @@
         android:id="@+id/cardView13"
         android:layout_width="329dp"
         android:layout_height="182dp"
-        android:layout_marginEnd="16dp"
         app:cardBackgroundColor="@color/orange"
         app:cardCornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,11 +70,11 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="14dp"
                 android:layout_marginBottom="24dp"
+                android:src="@drawable/topcallingdetails"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.2"
-                android:src="@drawable/topcallingdetails" />
+                app:layout_constraintVertical_bias="0.2" />
 
             <TextView
                 android:id="@+id/textView57"
@@ -156,7 +156,6 @@
         android:id="@+id/textView63"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="16dp"
         android:drawableLeft="@drawable/readingg"
         android:drawablePadding="5dp"
@@ -164,7 +163,7 @@
         android:text="Time elapsed |"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/leadInfo"
         app:layout_constraintTop_toBottomOf="@+id/leadInfo" />
 
     <TextView
@@ -177,6 +176,7 @@
         android:text="00.9"
         android:textColor="@color/orange"
         android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/disposeLead"
         app:layout_constraintStart_toEndOf="@+id/textView63"
         app:layout_constraintTop_toBottomOf="@+id/leadInfo" />
 
@@ -184,9 +184,9 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="320dp"
         android:layout_height="260dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="44dp"
         android:background="@drawable/orange_border_rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView63">
 
@@ -273,9 +273,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="280dp"
             android:layout_height="33dp"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/orange_border_rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView71">
 

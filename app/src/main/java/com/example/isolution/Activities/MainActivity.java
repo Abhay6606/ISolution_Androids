@@ -4,64 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.isolution.R;
 import com.example.isolution.Adapter.ViewPagerAdapter;
+import com.example.isolution.R;
+import com.example.isolution.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    ViewPager mSLideViewPager;
-    LinearLayout mDotLayout;
-    Button button;
-    ConstraintLayout constraintLayout;
-    TextView textView;
+    ActivityMainBinding mainBinding;
     TextView[] dots;
     ViewPagerAdapter viewPagerAdapter;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        button = findViewById(R.id.button);
-        mSLideViewPager = findViewById(R.id.viewPager);
-        mDotLayout = (LinearLayout) findViewById(R.id.dotLinear);
-        textView = findViewById(R.id.deshboardText);
-        constraintLayout = findViewById(R.id.constntId);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (getitem(0) < 2)
-                    mSLideViewPager.setCurrentItem(getitem(1), true);
-                else {
-
-                    Intent i = new Intent(MainActivity.this, SignupActivity.class);
-                    startActivity(i);
-                    finish();
-
-                }
-
-            }
-        });
-
-
-        viewPagerAdapter = new ViewPagerAdapter(this);
-
-        mSLideViewPager.setAdapter(viewPagerAdapter);
-
-        setUpindicator(0);
-        mSLideViewPager.addOnPageChangeListener(viewListener);
-
-    }
 
 
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
@@ -77,22 +32,22 @@ public class MainActivity extends AppCompatActivity {
 
             if (position == 0) {
 
-                button.setText("Get Started");
-                button.setBackground(getDrawable(R.drawable.button_background));
-                textView.setText("A Unique & Adavance Tool for you\ncalling solutions Manage Your Call\nWith i-Solution");
-                constraintLayout.setBackgroundColor(getResources().getColor(R.color.pink));
+                mainBinding.button.setText("Get Started");
+                mainBinding.button.setBackground(getDrawable(R.drawable.button_background));
+                mainBinding.deshboardText.setText("A Unique & Adavance Tool for you\ncalling solutions Manage Your Call\nWith i-Solution");
+                mainBinding.constntId.setBackgroundColor(getResources().getColor(R.color.pink));
 
 
             } else if (position == 1) {
-                button.setText("NEXTStep");
-                button.setBackground(getDrawable(R.drawable.button_orange_background));
-                textView.setText("Convert Your Inquiries to Clients....\nand Manage & Maintain Your Clients\nwith I-Solutions");
-                constraintLayout.setBackgroundColor(getResources().getColor(R.color.purple_200));
+                mainBinding.button.setText("NEXTStep");
+                mainBinding.button.setBackground(getDrawable(R.drawable.button_orange_background));
+                mainBinding.deshboardText.setText("Convert Your Inquiries to Clients....\nand Manage & Maintain Your Clients\nwith I-Solutions");
+                mainBinding.constntId.setBackgroundColor(getResources().getColor(R.color.purple_200));
             } else if (position == 2) {
-                button.setText("Finish");
-                button.setBackground(getDrawable(R.drawable.button_background));
-                textView.setText("manage & Grow Your Business with\npalm, lets your working more\nproductive with i-solution");
-                constraintLayout.setBackgroundColor(getResources().getColor(R.color.orange));
+                mainBinding.button.setText("Finish");
+                mainBinding.button.setBackground(getDrawable(R.drawable.button_background));
+                mainBinding.deshboardText.setText("manage & Grow Your Business with\npalm, lets your working more\nproductive with i-solution");
+                mainBinding.constntId.setBackgroundColor(getResources().getColor(R.color.orange));
             }
         }
 
@@ -102,12 +57,43 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(mainBinding.getRoot());
 
+        mainBinding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (getitem(0) < 2)
+                    mainBinding.viewPager.setCurrentItem(getitem(1), true);
+                else {
+
+                    Intent i = new Intent(MainActivity.this, SignupActivity.class);
+                    startActivity(i);
+                    finish();
+
+                }
+
+            }
+        });
+
+
+        viewPagerAdapter = new ViewPagerAdapter(this);
+
+        mainBinding.viewPager.setAdapter(viewPagerAdapter);
+
+        setUpindicator(0);
+        mainBinding.viewPager.addOnPageChangeListener(viewListener);
+
+    }
 
     public void setUpindicator(int position) {
 
         dots = new TextView[3];
-        mDotLayout.removeAllViews();
+        mainBinding.dotLinear.removeAllViews();
 
         for (int i = 0; i < dots.length; i++) {
 
@@ -115,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             dots[i].setText(Html.fromHtml("&#8226"));
             dots[i].setTextSize(35);
             dots[i].setTextColor(getResources().getColor(R.color.inactive, getApplicationContext().getTheme()));
-            mDotLayout.addView(dots[i]);
+            mainBinding.dotLinear.addView(dots[i]);
 
         }
 
@@ -125,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int getitem(int i) {
 
-        return mSLideViewPager.getCurrentItem() + i;
+        return mainBinding.viewPager.getCurrentItem() + i;
     }
 
 }
