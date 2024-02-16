@@ -32,7 +32,7 @@ public class CallingDetailsActivity extends AppCompatActivity {
     ActivityCallingDetailsBinding callingDetailsBinding;
     ArrayList<CallLogsModelGetter> arrayList = new ArrayList<>();
     CallingDetailAdapter adapter;
-
+//gfjhfhfjh
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
