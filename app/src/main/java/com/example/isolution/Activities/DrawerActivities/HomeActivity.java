@@ -37,6 +37,7 @@ import com.example.isolution.Model.HomePercentageArrayGtterStter;
 import com.example.isolution.R;
 import com.example.isolution.databinding.ActivityHomeBinding;
 import com.google.android.material.navigation.NavigationBarView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -54,12 +55,11 @@ public class HomeActivity extends AppCompatActivity {
     ArrayList<HomeCalenderRsltGterStter> calnderArryLst = new ArrayList<>();
 
     // Strings for userData
-    String email,isBlocked,mobileNumber,name,roleName,selfieImage,userName;
+    String email, isBlocked, mobileNumber, name, roleName, selfieImage, userName;
 
     // Strings for bannerData
-    String average_duration,incoming,leadTotal,missed,outgoing,totalCalls;
+    String average_duration, incoming, leadTotal, missed, outgoing, totalCalls;
 
-//  String userId=  getSharedPreferences("loginData",MODE_PRIVATE).getString("user_id","null");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -232,8 +232,9 @@ public class HomeActivity extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("loginData", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "null");
+        String token = preferences.getString("token", "null");
 
-        Log.d("userId",userId);
+        Log.d("userId", userId);
 
 
         String url = "https://callcrm.techfreelancepro.com/api/dashboard/list?date_start=2024-02-01&date_end=2024-02-16";
@@ -242,7 +243,7 @@ public class HomeActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("check",response.toString());
+                Log.d("check", response.toString());
                 try {
                     JSONObject respObj = new JSONObject(response);
                     JSONObject result = respObj.getJSONObject("result");
@@ -255,23 +256,39 @@ public class HomeActivity extends AppCompatActivity {
                     //==============================================================================
                     //Extecting userData details
 
-                    email=userData.getString("email");
-                    isBlocked=userData.getString("isBlocked");
-                    mobileNumber=userData.getString("mobileNumber");
-                    name=userData.getString("name");
-                    roleName=userData.getString("roleName");
-                    selfieImage=userData.getString("selfieImage");
-                    userName=userData.getString("userName");
+                    email = userData.getString("email");
+                    isBlocked = userData.getString("isBlocked");
+                    mobileNumber = userData.getString("mobileNumber");
+                    name = userData.getString("name");
+                    roleName = userData.getString("roleName");
+                    selfieImage = userData.getString("selfieImage");
+                    userName = userData.getString("userName");
+
+
+                    // Code for set JsonResponse Data
+
+                    Picasso.get().load(selfieImage).into(homeBinding.circleImageView);
+                    homeBinding.nameuser.setText("Hello " + name);
+                    homeBinding.roleName.setText(roleName);
 
                     //==============================================================================
                     //Extecting bannerData details
 
-                    average_duration=bannerData.getString("average_duration");
-                    incoming=bannerData.getString("incoming");
-                    leadTotal=bannerData.getString("leadTotal");
-                    missed=bannerData.getString("missed");
-                    outgoing=bannerData.getString("outgoing");
-                    totalCalls=bannerData.getString("totalCalls");
+                    average_duration = bannerData.getString("average_duration");
+                    incoming = bannerData.getString("incoming");
+                    leadTotal = bannerData.getString("leadTotal");
+                    missed = bannerData.getString("missed");
+                    outgoing = bannerData.getString("outgoing");
+                    totalCalls = bannerData.getString("totalCalls");
+
+                    // Code for set JsonResponse Data
+
+                    homeBinding.avgTalktime.setText(average_duration + "min");
+                    homeBinding.incoming.setText(incoming);
+                    homeBinding.totalLeads.setText(leadTotal);
+                    homeBinding.missed.setText(missed);
+                    homeBinding.outgoing.setText(outgoing);
+                    homeBinding.totalCalls.setText(totalCalls);
 
 
                     //==============================================================================
@@ -281,11 +298,12 @@ public class HomeActivity extends AppCompatActivity {
                         JSONObject e = percentageArray.getJSONObject(i);
                         HomePercentageArrayGtterStter pack = new HomePercentageArrayGtterStter();
 
-                        pack.setCode(e.getString("count"));
-                        pack.setCode(e.getString("name"));
+                        pack.setCount(String.valueOf(e.getInt("count")));
+                        pack.setName(e.getString("name"));
                         pack.setCode(e.getString("code"));
 
                         perctgeArraylst.add(pack);
+
 
                     }
 
@@ -301,6 +319,7 @@ public class HomeActivity extends AppCompatActivity {
                         packk.setDateday(c.getString("dateDay"));
 
                         calnderArryLst.add(packk);
+                        Log.d("itr", packk.toString());
 
                     }
 
@@ -321,7 +340,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("x-user-id",userId);
+                params.put("x-user-id", userId);
+                params.put("Authorization", "Bearer " + token);
                 return params;
             }
         };

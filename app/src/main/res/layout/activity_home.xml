@@ -36,7 +36,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/nameuser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -57,7 +57,7 @@
                     android:textColor="@color/orange"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                    app:layout_constraintTop_toBottomOf="@+id/nameuser" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/circleImageView"
@@ -110,38 +110,41 @@
                                 android:id="@+id/textView26"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="29dp"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="8dp"
                                 android:gravity="center"
                                 android:text="Total Calls"
                                 android:textColor="@color/black"
                                 android:textSize="9sp"
+                                app:layout_constraintBottom_toTopOf="@+id/totalCalls"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/textView27"
+                                android:id="@+id/totalCalls"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="37dp"
-                                android:layout_marginTop="4dp"
                                 android:gravity="center"
                                 android:text="200"
                                 android:textColor="@color/black"
                                 android:textSize="12sp"
+                                app:layout_constraintBottom_toTopOf="@+id/textView29"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
                             <TextView
-                                android:id="@+id/textView28"
+                                android:id="@+id/totalLeads"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="37dp"
                                 android:layout_marginTop="2dp"
+                                android:layout_marginBottom="8dp"
                                 android:gravity="center"
                                 android:text="100"
                                 android:textColor="@color/black"
                                 android:textSize="12sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
@@ -149,20 +152,20 @@
                                 android:id="@+id/textView29"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="28dp"
-                                android:layout_marginTop="4dp"
                                 android:gravity="center"
                                 android:text="Total Leads"
                                 android:textColor="@color/black"
                                 android:textSize="9sp"
+                                app:layout_constraintBottom_toTopOf="@+id/totalLeads"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                                app:layout_constraintTop_toBottomOf="@+id/totalCalls" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                         <TextView
-                            android:id="@+id/textView32"
+                            android:id="@+id/outgoing"
                             android:layout_width="37dp"
                             android:layout_height="13dp"
                             android:layout_marginStart="12dp"
@@ -177,14 +180,14 @@
                             android:id="@+id/imageView16"
                             android:layout_width="22dp"
                             android:layout_height="22dp"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="8dp"
                             android:layout_marginEnd="132dp"
                             android:src="@drawable/misscall"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/imageView17" />
 
                         <TextView
-                            android:id="@+id/textView34"
+                            android:id="@+id/missed"
                             android:layout_width="37dp"
                             android:layout_height="13dp"
                             android:layout_marginStart="12dp"
@@ -196,7 +199,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
                         <TextView
-                            android:id="@+id/textView35"
+                            android:id="@+id/kk"
                             android:layout_width="60dp"
                             android:layout_height="12dp"
                             android:layout_marginStart="12dp"
@@ -205,7 +208,7 @@
                             android:textColor="@color/white"
                             android:textSize="8sp"
                             app:layout_constraintStart_toEndOf="@+id/imageView16"
-                            app:layout_constraintTop_toBottomOf="@+id/textView34" />
+                            app:layout_constraintTop_toBottomOf="@+id/missed" />
 
 
                         <de.hdodenhof.circleimageview.CircleImageView
@@ -248,10 +251,10 @@
                             android:textColor="@color/white"
                             android:textSize="8sp"
                             app:layout_constraintStart_toEndOf="@+id/imageView17"
-                            app:layout_constraintTop_toBottomOf="@+id/textView32" />
+                            app:layout_constraintTop_toBottomOf="@+id/outgoing" />
 
                         <TextView
-                            android:id="@+id/textView37"
+                            android:id="@+id/incoming"
                             android:layout_width="37dp"
                             android:layout_height="13dp"
                             android:layout_marginStart="12dp"
@@ -260,10 +263,10 @@
                             android:textColor="@color/white"
                             android:textSize="10sp"
                             app:layout_constraintStart_toEndOf="@+id/imageView18"
-                            app:layout_constraintTop_toBottomOf="@+id/textView35" />
+                            app:layout_constraintTop_toBottomOf="@+id/kk" />
 
                         <TextView
-                            android:id="@+id/textView38"
+                            android:id="@+id/jj"
                             android:layout_width="60dp"
                             android:layout_height="11dp"
                             android:layout_marginStart="12dp"
@@ -272,7 +275,7 @@
                             android:textColor="@color/white"
                             android:textSize="8sp"
                             app:layout_constraintStart_toEndOf="@+id/imageView18"
-                            app:layout_constraintTop_toBottomOf="@+id/textView37" />
+                            app:layout_constraintTop_toBottomOf="@+id/incoming" />
 
                         <TextView
                             android:id="@+id/textView39"
@@ -284,10 +287,10 @@
                             android:textColor="@color/white"
                             android:textSize="8sp"
                             app:layout_constraintStart_toEndOf="@+id/imageView19"
-                            app:layout_constraintTop_toBottomOf="@+id/textView41" />
+                            app:layout_constraintTop_toBottomOf="@+id/avgTalktime" />
 
                         <TextView
-                            android:id="@+id/textView41"
+                            android:id="@+id/avgTalktime"
                             android:layout_width="37dp"
                             android:layout_height="13dp"
                             android:layout_marginStart="12dp"
@@ -296,7 +299,7 @@
                             android:textColor="@color/white"
                             android:textSize="10sp"
                             app:layout_constraintStart_toEndOf="@+id/imageView19"
-                            app:layout_constraintTop_toBottomOf="@+id/textView38" />
+                            app:layout_constraintTop_toBottomOf="@+id/jj" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -383,13 +386,17 @@
                     android:textSize="17sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView23" />
+                    app:layout_constraintTop_toBottomOf="@+id/roleName" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    tools:listitem="@layout/item_home__calender"
+                    tools:itemCount="7"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -901,7 +908,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/roleName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"

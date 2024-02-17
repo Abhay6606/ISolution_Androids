@@ -41,7 +41,7 @@
                 android:background="@drawable/totalcallbg">
 
                 <TextView
-                    android:id="@+id/textView32"
+                    android:id="@+id/outgoing"
                     android:layout_width="37dp"
                     android:layout_height="13dp"
                     android:layout_marginStart="12dp"
@@ -63,7 +63,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/imageView17" />
 
                 <TextView
-                    android:id="@+id/textView34"
+                    android:id="@+id/missed"
                     android:layout_width="37dp"
                     android:layout_height="13dp"
                     android:layout_marginStart="12dp"
@@ -75,7 +75,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
                 <TextView
-                    android:id="@+id/textView35"
+                    android:id="@+id/kk"
                     android:layout_width="60dp"
                     android:layout_height="12dp"
                     android:layout_marginStart="12dp"
@@ -84,7 +84,7 @@
                     android:textColor="@color/white"
                     android:textSize="8dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView16"
-                    app:layout_constraintTop_toBottomOf="@+id/textView34" />
+                    app:layout_constraintTop_toBottomOf="@+id/missed" />
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -127,10 +127,10 @@
                     android:textColor="@color/white"
                     android:textSize="8dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView17"
-                    app:layout_constraintTop_toBottomOf="@+id/textView32" />
+                    app:layout_constraintTop_toBottomOf="@+id/outgoing" />
 
                 <TextView
-                    android:id="@+id/textView37"
+                    android:id="@+id/incoming"
                     android:layout_width="37dp"
                     android:layout_height="13dp"
                     android:layout_marginStart="12dp"
@@ -139,10 +139,10 @@
                     android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView18"
-                    app:layout_constraintTop_toBottomOf="@+id/textView35" />
+                    app:layout_constraintTop_toBottomOf="@+id/kk" />
 
                 <TextView
-                    android:id="@+id/textView38"
+                    android:id="@+id/jj"
                     android:layout_width="60dp"
                     android:layout_height="11dp"
                     android:layout_marginStart="12dp"
@@ -151,7 +151,7 @@
                     android:textColor="@color/white"
                     android:textSize="8dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView18"
-                    app:layout_constraintTop_toBottomOf="@+id/textView37" />
+                    app:layout_constraintTop_toBottomOf="@+id/incoming" />
 
                 <TextView
                     android:id="@+id/textView39"
@@ -163,10 +163,10 @@
                     android:textColor="@color/white"
                     android:textSize="8dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView19"
-                    app:layout_constraintTop_toBottomOf="@+id/textView41" />
+                    app:layout_constraintTop_toBottomOf="@+id/avgTalktime" />
 
                 <TextView
-                    android:id="@+id/textView41"
+                    android:id="@+id/avgTalktime"
                     android:layout_width="37dp"
                     android:layout_height="13dp"
                     android:layout_marginStart="12dp"
@@ -175,7 +175,7 @@
                     android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView19"
-                    app:layout_constraintTop_toBottomOf="@+id/textView38" />
+                    app:layout_constraintTop_toBottomOf="@+id/jj" />
 
                 <ProgressBar
                     android:id="@+id/progressBar"
@@ -212,7 +212,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView27"
+                        android:id="@+id/totalCalls"
                         android:layout_width="44dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -225,7 +225,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
                     <TextView
-                        android:id="@+id/textView28"
+                        android:id="@+id/totalLeads"
                         android:layout_width="44dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -248,7 +248,7 @@
                         android:textColor="@color/black"
                         android:textSize="8sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                        app:layout_constraintTop_toBottomOf="@+id/totalCalls" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
