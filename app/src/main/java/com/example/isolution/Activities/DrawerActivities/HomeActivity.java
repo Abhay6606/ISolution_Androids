@@ -69,6 +69,13 @@ public class HomeActivity extends AppCompatActivity {
 
         getApiRequest();
 
+
+
+        SharedPreferences pref=getSharedPreferences("check",MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit().putBoolean("flag", true);
+        editor.apply();
+
+
         //Click Listeners
         homeBinding.cardNewLeads.setOnClickListener(new View.OnClickListener() {
             @Override
