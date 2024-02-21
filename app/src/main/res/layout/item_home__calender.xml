@@ -22,21 +22,10 @@
             android:id="@+id/single_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="21"
-            android:textSize="20sp"
+            android:text="18"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            />
-
-        <TextView
-            android:id="@+id/single_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fri"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>

@@ -33,8 +33,7 @@ public class HomeCalenderAdapter extends RecyclerView.Adapter<HomeCalenderAdapte
     @Override
     public void onBindViewHolder(@NonNull HomeCalenderAdapter.ViewHolder holder, int position) {
         HomeCalenderRsltGterStter aa = arraylist.get(position);
-        holder.itemHomeCalenderBinding.singleDate.setText(aa.getDate());
-        holder.itemHomeCalenderBinding.singleDay.setText(aa.getDateday());
+        holder.itemHomeCalenderBinding.singleDate.setText(aa.getDateday());
         holder.itemHomeCalenderBinding.singleCard.setOnClickListener(view ->{
             
         });

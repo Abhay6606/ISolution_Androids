@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -32,6 +33,8 @@ import com.example.isolution.Activities.CategoriesCardActivities.ContectLeadForm
 import com.example.isolution.Activities.CategoriesCardActivities.MainLeadActivity;
 import com.example.isolution.Activities.ChatActivity;
 import com.example.isolution.Activities.FolderActivity;
+import com.example.isolution.Activities.LoginActivity;
+import com.example.isolution.Adapter.HomeCalenderAdapter;
 import com.example.isolution.Model.HomeCalenderRsltGterStter;
 import com.example.isolution.Model.HomePercentageArrayGtterStter;
 import com.example.isolution.R;
@@ -42,7 +45,10 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.jar.JarException;
@@ -59,6 +65,7 @@ public class HomeActivity extends AppCompatActivity {
 
     // Strings for bannerData
     String average_duration, incoming, leadTotal, missed, outgoing, totalCalls;
+    ProgressDialog mProgressDialog;
 
 
     @Override
@@ -67,13 +74,15 @@ public class HomeActivity extends AppCompatActivity {
         homeBinding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(homeBinding.getRoot());
 
-        getApiRequest();
-
-
-
         SharedPreferences pref=getSharedPreferences("check",MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit().putBoolean("flag", true);
         editor.apply();
+
+
+
+        getApiRequest();
+
+
 
 
         //Click Listeners
@@ -241,7 +250,10 @@ public class HomeActivity extends AppCompatActivity {
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
 
-        Log.d("userId", userId);
+        mProgressDialog = new ProgressDialog(HomeActivity.this);
+        mProgressDialog.setTitle("Please Wait..");
+        mProgressDialog.setMessage("Logging in...");
+        mProgressDialog.show();
 
 
         String url = "https://callcrm.techfreelancepro.com/api/dashboard/list?date_start=2024-02-01&date_end=2024-02-16";
@@ -323,16 +335,19 @@ public class HomeActivity extends AppCompatActivity {
                         packk.setCount(c.getString("count"));
                         packk.setDate(c.getString("date"));
                         packk.setKey(c.getString("key"));
-                        packk.setDateday(c.getString("dateDay"));
-
+                        packk.setDateday(dateFormatter(c.getString("dateDay")));
                         calnderArryLst.add(packk);
                         Log.d("itr", packk.toString());
 
                     }
+                    mProgressDialog.hide();
+                    HomeCalenderAdapter adapter=new HomeCalenderAdapter(calnderArryLst,HomeActivity.this);
+                    homeBinding.recyclerView.setAdapter(adapter);
+
 
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
 
 
@@ -355,6 +370,22 @@ public class HomeActivity extends AppCompatActivity {
         queue.add(request);
 
         return new JSONObject();
+
+    }
+    private String dateFormatter(String string){
+      //  String dateString = "Friday February 16 2024";
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE MMMM dd yyyy");
+        Date date = null;
+        try {
+            date = formatter.parse(string);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        SimpleDateFormat targetFormat = new SimpleDateFormat("dd EEE");
+        String formattedDate = targetFormat.format(date);
+
+        return formattedDate;
+
     }
 
 
