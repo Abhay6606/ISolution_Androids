@@ -921,6 +921,7 @@
                     android:drawablePadding="6dp"
                     android:text="Calling Process"
                     android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
 

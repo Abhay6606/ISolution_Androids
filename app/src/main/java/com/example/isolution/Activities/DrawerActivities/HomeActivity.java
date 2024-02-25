@@ -3,13 +3,16 @@ package com.example.isolution.Activities.DrawerActivities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -81,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         getApiRequest();
-
+        requestPerm();
 
 
 
@@ -381,12 +384,30 @@ public class HomeActivity extends AppCompatActivity {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        SimpleDateFormat targetFormat = new SimpleDateFormat("dd EEE");
+        SimpleDateFormat targetFormat = new SimpleDateFormat("dd\nEEE");
         String formattedDate = targetFormat.format(date);
 
         return formattedDate;
 
     }
 
+    //====================================
+    // code for Retrieve data callLogs
 
+
+    private  void requestPerm(){
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.READ_CALL_LOG,
+                Manifest.permission.CALL_PHONE},1000);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode==1000){
+            if (grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this,"Greanted",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }

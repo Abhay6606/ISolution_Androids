@@ -64,7 +64,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/imageView12" />
 
                     <EditText
-                        android:id="@+id/textView224"
+                        android:id="@+id/firstName"
                         android:layout_width="165dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="16dp"
@@ -77,7 +77,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
                     <EditText
-                        android:id="@+id/textView24"
+                        android:id="@+id/lastName"
                         android:layout_width="125dp"
                         android:layout_height="30dp"
                         android:layout_marginTop="16dp"
@@ -90,7 +90,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
                     <EditText
-                        android:id="@+id/dfSCs"
+                        android:id="@+id/email"
                         android:layout_width="300dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="16dp"
@@ -101,10 +101,10 @@
                         android:padding="3dp"
                         android:paddingStart="12dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView224" />
+                        app:layout_constraintTop_toBottomOf="@+id/firstName" />
 
                     <EditText
-                        android:id="@+id/gre"
+                        android:id="@+id/mobileNumber"
                         android:layout_width="300dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="16dp"
@@ -115,10 +115,10 @@
                         android:padding="3dp"
                         android:paddingStart="12dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dfSCs" />
+                        app:layout_constraintTop_toBottomOf="@+id/email" />
 
-                    <EditText
-                        android:id="@+id/dfs"
+                    <Spinner
+                        android:id="@+id/referenceSpinner"
                         android:layout_width="300dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="16dp"
@@ -142,10 +142,10 @@
                         android:padding="3dp"
                         android:paddingStart="12dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/gre" />
+                        app:layout_constraintTop_toBottomOf="@+id/mobileNumber" />
 
-                    <EditText
-                        android:id="@+id/dsfsas"
+                    <Spinner
+                        android:id="@+id/categorySpinner"
                         android:layout_width="300dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="16dp"
@@ -156,34 +156,7 @@
                         android:padding="3dp"
                         android:paddingStart="12dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dfs" />
-
-                    <EditText
-                        android:id="@+id/dsfsaasas"
-                        android:layout_width="300dp"
-                        android:layout_height="100dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/teal_border_corner"
-                        android:hint="Message"
-                        android:inputType="textEmailAddress"
-                        android:padding="3dp"
-                        android:paddingStart="12dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextText7" />
-
-                    <EditText
-                        android:id="@+id/editText"
-                        android:layout_width="300dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/teal_border_corner"
-                        android:hint="Status"
-                        android:padding="3dp"
-                        android:paddingStart="12dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dsfsas" />
+                        app:layout_constraintTop_toBottomOf="@+id/referenceSpinner" />
 
                     <EditText
                         android:id="@+id/editTextText4"
@@ -192,33 +165,19 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:background="@drawable/teal_border_corner"
-                        android:hint="Lead Score"
+                        android:hint="Lead Source"
                         android:inputType="textEmailAddress"
                         android:padding="3dp"
                         android:paddingStart="12dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editText" />
-
-                    <EditText
-                        android:id="@+id/editTextText6"
-                        android:layout_width="300dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
-                        android:background="@drawable/teal_border_corner"
-                        android:hint="About Lead"
-                        android:inputType="textEmailAddress"
-                        android:padding="3dp"
-                        android:paddingStart="12dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+                        app:layout_constraintTop_toBottomOf="@+id/categorySpinner" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button2"
+                        android:id="@+id/leadButton"
                         android:layout_width="120dp"
                         android:layout_height="35dp"
                         android:layout_marginStart="102dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="24dp"
                         android:layout_marginBottom="50dp"
                         android:background="@drawable/orange_border_rectangle"
                         android:backgroundTint="@color/orange"
@@ -227,21 +186,8 @@
                         android:textSize="11dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dsfsaasas" />
+                        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
 
-                    <EditText
-                        android:id="@+id/editTextText7"
-                        android:layout_width="300dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/teal_border_corner"
-                        android:hint="Sbuject"
-                        android:inputType="textEmailAddress"
-                        android:padding="3dp"
-                        android:paddingStart="12dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
