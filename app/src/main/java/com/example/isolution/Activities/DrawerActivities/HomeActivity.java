@@ -398,6 +398,8 @@ public class HomeActivity extends AppCompatActivity {
     private  void requestPerm(){
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.READ_CALL_LOG,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.READ_CONTACTS,
                 Manifest.permission.CALL_PHONE},1000);
     }
 
@@ -406,7 +408,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode==1000){
             if (grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this,"Greanted",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Granted",Toast.LENGTH_SHORT).show();
             }
         }
     }

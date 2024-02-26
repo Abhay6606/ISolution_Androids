@@ -44,8 +44,6 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog mProgressDialog;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(loginBinding.getRoot());
 
 
-
 //
-
 
 
         deviceToken();
@@ -78,17 +74,10 @@ public class LoginActivity extends AppCompatActivity {
                     tokenGenerate(loginBinding.userName.getText().toString(), loginBinding.password.getText().toString());
                 }
 
-                
-                
-                
-                
-                
+
             }
 
         });
-
-
-
 
 
     }
@@ -114,7 +103,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void tokenGenerate(String userName, String password) {
-
 
 
         String url = "https://callcrm.techfreelancepro.com/api/tokenGenerate";
@@ -151,8 +139,8 @@ public class LoginActivity extends AppCompatActivity {
                     SessionManager.savePreference(preferences, "email", email);
                     SessionManager.savePreference(preferences, "mobileNumber", mobileNumber);
                     SessionManager.savePreference(preferences, "name", name);
-                    
-                    
+
+
                     if (respObj.getBoolean("status")) {
 
                         Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
@@ -172,7 +160,8 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Credentials Are Incorrect", Toast.LENGTH_SHORT).show();
                 mProgressDialog.dismiss();
                 loginBinding.userName.setText("");
-                loginBinding.password.setText("");            }
+                loginBinding.password.setText("");
+            }
         }) {
             @Override
             protected Map<String, String> getParams() {
@@ -193,6 +182,7 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(request);
 
     }
+
 
 
 }

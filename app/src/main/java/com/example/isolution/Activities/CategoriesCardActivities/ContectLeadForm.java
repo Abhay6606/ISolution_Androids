@@ -217,13 +217,13 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
 
                     }
 
-                    ArrayAdapter ResourceAdapter = new ArrayAdapter(ContectLeadForm.this, android.R.layout.simple_spinner_item,strcategoryArraylst);
+                    ArrayAdapter ResourceAdapter = new ArrayAdapter(ContectLeadForm.this, android.R.layout.simple_spinner_item,strsourceCodeyArraylst);
                     ResourceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     leadFormBinding.referenceSpinner.setAdapter(ResourceAdapter);
                     leadFormBinding.referenceSpinner.setOnItemSelectedListener(ContectLeadForm.this);
 
 
-                    ArrayAdapter CategoryAdapter =new ArrayAdapter(ContectLeadForm.this, android.R.layout.simple_spinner_item,strsourceCodeyArraylst);
+                    ArrayAdapter CategoryAdapter =new ArrayAdapter(ContectLeadForm.this, android.R.layout.simple_spinner_item,strcategoryArraylst);
                     ResourceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     leadFormBinding.categorySpinner.setAdapter(CategoryAdapter);
                     leadFormBinding.categorySpinner.setOnItemSelectedListener(ContectLeadForm.this);
@@ -258,4 +258,6 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
         return new JSONObject();
 
     }
+
+
 }
