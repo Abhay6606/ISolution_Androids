@@ -1,12 +1,16 @@
 package com.example.isolution.Activities.CategoriesCardActivities;
 
 import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.CallLog;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +18,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.isolution.Adapter.CallingDetailAdapter;
 import com.example.isolution.Model.CallLogsModelGetter;
 import com.example.isolution.Model.CallingDetailsGetterSetter;
@@ -22,16 +33,23 @@ import com.example.isolution.databinding.ActivityCallingDetailsBinding;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class CallingDetailsActivity extends AppCompatActivity {
     ActivityCallingDetailsBinding callingDetailsBinding;
     ArrayList<CallLogsModelGetter> arrayList = new ArrayList<>();
     CallingDetailAdapter adapter;
+    JSONArray jsonArray=new JSONArray();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +58,6 @@ public class CallingDetailsActivity extends AppCompatActivity {
         setContentView(callingDetailsBinding.getRoot());
 
         askPermission();
-
 
         // Adapter for RecyclerView (Access Contect logs)
 
@@ -124,6 +141,9 @@ public class CallingDetailsActivity extends AppCompatActivity {
     private List<CallLogsModelGetter> getCallDetails() {
 
         ArrayList<CallLogsModelGetter> logListArrayList = new ArrayList<>();
+
+
+
         Cursor managedCursor = managedQuery(CallLog.Calls.CONTENT_URI, null, null, null, null);
         int name = managedCursor.getColumnIndex(CallLog.Calls.CACHED_NAME);
         int number = managedCursor.getColumnIndex(CallLog.Calls.NUMBER);
@@ -156,6 +176,21 @@ public class CallingDetailsActivity extends AppCompatActivity {
                     break;
             }
 
+            JSONObject jsonObject=new JSONObject();
+
+            try {
+                jsonObject.put("mobile_number",phNumber);
+                jsonObject.put("call_start_time",callDate);
+                jsonObject.put("call_end_time","");
+                jsonObject.put("ringing","");
+                jsonObject.put("calltype",dir);
+                jsonObject.put("talktime",callDuration);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+
+            jsonArray.put(jsonObject);
+
             CallLogsModelGetter pack = new CallLogsModelGetter(callerName, phNumber, dir, callDate, callDayTime.toString(), callDuration);
             logListArrayList.add(pack);
 
@@ -165,9 +200,69 @@ public class CallingDetailsActivity extends AppCompatActivity {
 //                    + " \nCall duration in sec :--- " + callDuration);
 //            sb.append("\n----------------------------------");
         }
+
         managedCursor.close();
+
+        apiRequest(this);
+
 //        return sb.toString();
         return logListArrayList;
     }
+
+    private void apiRequest(Context context) {
+
+
+        SharedPreferences preferences = context.getSharedPreferences("loginData", MODE_PRIVATE);
+        String userId = preferences.getString("user_id", "null");
+        String token = preferences.getString("token", "null");
+
+        String url = "https://callcrm.techfreelancepro.com/api/callDetails/user";
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+
+                    JSONObject respObj = new JSONObject(response);
+
+                    Toast.makeText(context, respObj.getString("message"), Toast.LENGTH_SHORT).show();
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "Credentials Are Incorrect", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("x-user-id", userId);
+                params.put("Authorization", "Bearer " + token);
+                return params;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("call_details", String.valueOf(jsonArray));
+
+
+                return params;
+            }
+
+
+        };
+        queue.add(request);
+
+    }
+
 }
 

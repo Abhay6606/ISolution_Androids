@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -42,15 +43,18 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
     ActivityContectLeadFormBinding leadFormBinding;
     ArrayList<LeadCategoryGetterSetter> categoryArraylst = new ArrayList<>();
     ArrayList<LeadSourceCodeGetterSetter> sourceCodeyArraylst = new ArrayList<>();
-
+    String source;
+    String categroy;
     ArrayList<String> strcategoryArraylst = new ArrayList<>();
     ArrayList<String> strsourceCodeyArraylst = new ArrayList<>();
+    ProgressDialog mProgressDialog;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        leadFormBinding=ActivityContectLeadFormBinding.inflate(getLayoutInflater());
+        leadFormBinding = ActivityContectLeadFormBinding.inflate(getLayoutInflater());
         setContentView(leadFormBinding.getRoot());
 
         getApiRequest();
@@ -58,25 +62,44 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
         leadFormBinding.leadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mobileNumber=leadFormBinding.mobileNumber.getText().toString();
-                String email=leadFormBinding.email.getText().toString();
-                String firstName=leadFormBinding.firstName.getText().toString();
-                String lastName=leadFormBinding.lastName.getText().toString();
-                apiRequest(mobileNumber,email,"1","facebook",firstName +" " +lastName,ContectLeadForm.this);
+
+
+                if (TextUtils.isEmpty(leadFormBinding.firstName.getText()) || TextUtils.isEmpty(leadFormBinding.lastName.getText()) || TextUtils.isEmpty(leadFormBinding.email.getText()) || TextUtils.isEmpty(leadFormBinding.mobileNumber.getText()) || TextUtils.isEmpty(leadFormBinding.city.getText()) || TextUtils.isEmpty(leadFormBinding.leadSource.getText())) {
+
+                    Toast.makeText(ContectLeadForm.this, "You missing some credentials ", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+
+                    String mobileNumber = leadFormBinding.mobileNumber.getText().toString();
+                    String email = leadFormBinding.email.getText().toString();
+                    String firstName = leadFormBinding.firstName.getText().toString();
+                    String lastName = leadFormBinding.lastName.getText().toString();
+                    apiRequest(mobileNumber, email, "1", source, firstName + " " + lastName, ContectLeadForm.this);
+
+
+                }
+
+
             }
         });
         leadFormBinding.referenceSpinner.setOnItemSelectedListener(ContectLeadForm.this);
 
 
-
     }
-    private void apiRequest( String mobile_number, String email_id, String category_code, String source,String name,Context context) {
+
+    private void apiRequest(String mobile_number, String email_id, String category_code, String source, String name, Context context) {
 
 
         SharedPreferences preferences = context.getSharedPreferences("loginData", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
 
+
+        mProgressDialog = new ProgressDialog(ContectLeadForm.this);
+        mProgressDialog.setTitle("Please Wait..");
+        mProgressDialog.setMessage("Logging in...");
+        mProgressDialog.show();
 
 
         String url = "https://callcrm.techfreelancepro.com/api/lead/create";
@@ -92,11 +115,11 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
                     Toast.makeText(context, respObj.getString("message"), Toast.LENGTH_SHORT).show();
 
 
-
-
+                    mProgressDialog.hide();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    mProgressDialog.hide();
                 }
             }
         }, new Response.ErrorListener() {
@@ -138,15 +161,17 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        Spinner spin = (Spinner)parent;
-        Spinner spin2 = (Spinner)parent;
-        if(spin.getId() == R.id.referenceSpinner)
-        {
-            Toast.makeText(this, "Your choose :" + sourceCodeyArraylst.get(position).getId(),Toast.LENGTH_SHORT).show();
+        Spinner spin = (Spinner) parent;
+        Spinner spin2 = (Spinner) parent;
+        if (spin.getId() == R.id.referenceSpinner) {
+            Toast.makeText(this, "Your choose :" + sourceCodeyArraylst.get(position).getId(), Toast.LENGTH_SHORT).show();
+            source = sourceCodeyArraylst.get(position).getName();
+            Log.d("str", source);
         }
-        if(spin2.getId() == R.id.categorySpinner)
-        {
-            Toast.makeText(this, "Your choose :" + categoryArraylst.get(position).getId(),Toast.LENGTH_SHORT).show();
+        if (spin2.getId() == R.id.categorySpinner) {
+            categroy = categoryArraylst.get(position).getName();
+            Toast.makeText(this, "Your choose :" + categoryArraylst.get(position).getId(), Toast.LENGTH_SHORT).show();
+            Log.d("str", categroy);
         }
     }
 
@@ -154,11 +179,17 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
     private JSONObject getApiRequest() {
 
         SharedPreferences preferences = getSharedPreferences("loginData", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
+
+        mProgressDialog = new ProgressDialog(ContectLeadForm.this);
+        mProgressDialog.setTitle("Please Wait..");
+        mProgressDialog.setMessage("Logging in...");
+        mProgressDialog.show();
 
 
         String url = "https://callcrm.techfreelancepro.com/api/master/data";
@@ -196,7 +227,6 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
                         strcategoryArraylst.add(e.getString("name"));
 
 
-
                     }
 
                     //================================================================================================
@@ -217,22 +247,23 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
 
                     }
 
-                    ArrayAdapter ResourceAdapter = new ArrayAdapter(ContectLeadForm.this, android.R.layout.simple_spinner_item,strsourceCodeyArraylst);
+                    ArrayAdapter ResourceAdapter = new ArrayAdapter(ContectLeadForm.this, android.R.layout.simple_spinner_item, strsourceCodeyArraylst);
                     ResourceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     leadFormBinding.referenceSpinner.setAdapter(ResourceAdapter);
                     leadFormBinding.referenceSpinner.setOnItemSelectedListener(ContectLeadForm.this);
 
 
-                    ArrayAdapter CategoryAdapter =new ArrayAdapter(ContectLeadForm.this, android.R.layout.simple_spinner_item,strcategoryArraylst);
+                    ArrayAdapter CategoryAdapter = new ArrayAdapter(ContectLeadForm.this, android.R.layout.simple_spinner_item, strcategoryArraylst);
                     ResourceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     leadFormBinding.categorySpinner.setAdapter(CategoryAdapter);
                     leadFormBinding.categorySpinner.setOnItemSelectedListener(ContectLeadForm.this);
 
 
-
+                    mProgressDialog.hide();
 
 
                 } catch (Exception e) {
+                    mProgressDialog.hide();
                     e.printStackTrace();
                 }
 

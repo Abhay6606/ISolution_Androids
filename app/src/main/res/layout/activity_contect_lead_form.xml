@@ -129,10 +129,10 @@
                         android:padding="3dp"
                         android:paddingStart="12dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dfsas" />
+                        app:layout_constraintTop_toBottomOf="@+id/city" />
 
                     <EditText
-                        android:id="@+id/dfsas"
+                        android:id="@+id/city"
                         android:layout_width="300dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="16dp"
@@ -159,7 +159,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/referenceSpinner" />
 
                     <EditText
-                        android:id="@+id/editTextText4"
+                        android:id="@+id/leadSource"
                         android:layout_width="300dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="16dp"
@@ -186,7 +186,7 @@
                         android:textSize="11dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+                        app:layout_constraintTop_toBottomOf="@+id/leadSource" />
 
 
 

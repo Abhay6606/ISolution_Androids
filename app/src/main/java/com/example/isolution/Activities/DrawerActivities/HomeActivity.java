@@ -83,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        getApiRequest();
+
         requestPerm();
 
 
@@ -221,6 +221,13 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        
+        getApiRequest();
+
+        super.onResume();
+    }
 
     public static void openDrawer(DrawerLayout drawerLayout) {
         drawerLayout.openDrawer(GravityCompat.START);
@@ -350,6 +357,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
                 } catch (Exception e) {
+                    mProgressDialog.hide();
                     e.printStackTrace();
                 }
 
