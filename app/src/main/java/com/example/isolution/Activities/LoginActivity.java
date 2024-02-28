@@ -61,11 +61,8 @@ public class LoginActivity extends AppCompatActivity {
         loginBinding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(loginBinding.getRoot());
 
-
-//
-
-
         deviceToken();
+
 
 
         loginBinding.loginbtn.setOnClickListener(new View.OnClickListener() {
@@ -76,13 +73,15 @@ public class LoginActivity extends AppCompatActivity {
                 mProgressDialog.setMessage("Logging in...");
 
 
+
+
                 if (TextUtils.isEmpty(loginBinding.userName.getText().toString())) {
                     Toast.makeText(LoginActivity.this, "Enter the Username", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(loginBinding.password.getText().toString())) {
                     Toast.makeText(LoginActivity.this, "Enter the Password ", Toast.LENGTH_SHORT).show();
                 } else {
                     mProgressDialog.show();
-                    tokenGenerate(loginBinding.userName.getText().toString(), loginBinding.password.getText().toString());
+                    tokenGenerate(loginBinding.userName.getText().toString().trim(), loginBinding.password.getText().toString().trim());
                 }
 
 
@@ -100,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(token)) {
                     Log.d(TAG, "retrieve token successful : " + token);
                     deviceToken = token;
+                    Log.d("devToh",deviceToken);
                 } else {
                     Log.w(TAG, "token should not be null...");
                     deviceToken = "NOT FOUND";
@@ -116,13 +116,12 @@ public class LoginActivity extends AppCompatActivity {
     private void tokenGenerate(String userName, String password) {
 
 
-        String url = "https://callcrm.techfreelancepro.com/api/tokenGenerate";
+        String url =   "https://callcrm.techfreelancepro.com/api/tokenGenerate";
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-
 
                     JSONObject respObj = new JSONObject(response);
 
@@ -168,12 +167,14 @@ public class LoginActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(LoginActivity.this, "Credentials Are Incorrect", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                 mProgressDialog.dismiss();
                 loginBinding.userName.setText("");
                 loginBinding.password.setText("");
             }
         }) {
+
+
             @Override
             protected Map<String, String> getParams() {
 
@@ -184,7 +185,6 @@ public class LoginActivity extends AppCompatActivity {
                 params.put("device_token", deviceToken);
                 params.put("device_type", android);
 
-
                 return params;
             }
 
@@ -193,6 +193,8 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(request);
 
     }
+
+
     private List<CallLogsModelGetter> getCallDetails() {
 
         ArrayList<CallLogsModelGetter> logListArrayList = new ArrayList<>();
@@ -205,7 +207,7 @@ public class LoginActivity extends AppCompatActivity {
         int type = managedCursor.getColumnIndex(CallLog.Calls.TYPE);
         int date = managedCursor.getColumnIndex(CallLog.Calls.DATE);
         int duration = managedCursor.getColumnIndex(CallLog.Calls.DURATION);
-//        sb.append("Call Details :");
+
 
         while (managedCursor.moveToNext()) {
             String callerName = managedCursor.getString(name);
@@ -250,29 +252,25 @@ public class LoginActivity extends AppCompatActivity {
             logListArrayList.add(pack);
 
 
-//            sb.append("\nPhone Number:--- " + phNumber + " \nCall Type:--- "
-//                    + dir + " \nCall Date:--- " + callDayTime
-//                    + " \nCall duration in sec :--- " + callDuration);
-//            sb.append("\n----------------------------------");
         }
 
         managedCursor.close();
 
-        apiRequest(this);
+        apiRequest();startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+        finish();
 
-//        return sb.toString();
         return logListArrayList;
     }
 
-    private void apiRequest(Context context) {
+    private void apiRequest() {
 
 
-        SharedPreferences preferences = context.getSharedPreferences("loginData", MODE_PRIVATE);
+        SharedPreferences preferences = this.getSharedPreferences("loginData", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
 
         String url = "https://callcrm.techfreelancepro.com/api/callDetails/user";
-        RequestQueue queue = Volley.newRequestQueue(context);
+        RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -281,9 +279,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     JSONObject respObj = new JSONObject(response);
 
-                    Toast.makeText(context, respObj.getString("message"), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                    finish();
+                    Toast.makeText(LoginActivity.this, respObj.getString("message"), Toast.LENGTH_SHORT).show();
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -292,7 +289,7 @@ public class LoginActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Credentials Are Incorrect", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Credentials Are Incorrect", Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
@@ -319,6 +316,8 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(request);
 
     }
+
+
 
 
 

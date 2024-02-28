@@ -63,7 +63,7 @@
             android:name=".Activities.CategoriesCardActivities.ContectLeadForm"
             android:exported="false" />
         <activity
-            android:name=".Activities.CategoriesCardActivities.ContactLeadActivity"
+            android:name=".Activities.CategoriesCardActivities.LeadListingActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.DrawerActivities.HelpActivity"

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.isolution.Model.FetchAllLeadsGetterSetter;
 import com.example.isolution.Model.GetterSetter;
 import com.example.isolution.Activities.CategoriesCardActivities.LeadCategoryActivity;
 import com.example.isolution.databinding.LeadRecyclerItemBinding;
@@ -19,10 +20,10 @@ public class LeadRecyclerAdapter extends RecyclerView.Adapter<LeadRecyclerAdapte
     @NonNull
     LayoutInflater inflater;
     Context context;
-    ArrayList<GetterSetter> arrayList=new ArrayList<>();
+    ArrayList<FetchAllLeadsGetterSetter> arrayList=new ArrayList<>();
     LeadRecyclerItemBinding leadRecyclerItemBinding;
 
-    public LeadRecyclerAdapter(Context context, ArrayList<GetterSetter> ArrayList){
+    public LeadRecyclerAdapter(Context context, ArrayList<FetchAllLeadsGetterSetter> ArrayList){
         this.context=context;
         this.arrayList=ArrayList;
         inflater=LayoutInflater.from(context);
@@ -36,10 +37,10 @@ public class LeadRecyclerAdapter extends RecyclerView.Adapter<LeadRecyclerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull LeadRecyclerAdapter.ViewHolder holder, int position) {
-        GetterSetter arraylistposion=arrayList.get(position);
+        FetchAllLeadsGetterSetter arraylistposion=arrayList.get(position);
         leadRecyclerItemBinding.itemName.setText(arraylistposion.getName());
         leadRecyclerItemBinding.itemCity.setText(arraylistposion.getCity());
-        leadRecyclerItemBinding.itemCategory.setText(arraylistposion.getCategory());
+        leadRecyclerItemBinding.itemCategory.setText(arraylistposion.getCategory_code());
         leadRecyclerItemBinding.itemStatus.setText(arraylistposion.getStatus());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

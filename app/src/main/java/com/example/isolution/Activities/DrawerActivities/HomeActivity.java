@@ -2,7 +2,6 @@ package com.example.isolution.Activities.DrawerActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -17,9 +16,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -31,12 +27,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.isolution.Activities.AllCategoriesActivity;
 import com.example.isolution.Activities.CategoriesCardActivities.CallingDetailMain;
-import com.example.isolution.Activities.CategoriesCardActivities.ContactLeadActivity;
+import com.example.isolution.Activities.CategoriesCardActivities.LeadListingActivity;
 import com.example.isolution.Activities.CategoriesCardActivities.ContectLeadForm;
 import com.example.isolution.Activities.CategoriesCardActivities.MainLeadActivity;
 import com.example.isolution.Activities.ChatActivity;
 import com.example.isolution.Activities.FolderActivity;
-import com.example.isolution.Activities.LoginActivity;
 import com.example.isolution.Adapter.HomeCalenderAdapter;
 import com.example.isolution.Model.HomeCalenderRsltGterStter;
 import com.example.isolution.Model.HomePercentageArrayGtterStter;
@@ -54,7 +49,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.jar.JarException;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -106,7 +100,7 @@ public class HomeActivity extends AppCompatActivity {
         homeBinding.cardLeadGroupDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, ContactLeadActivity.class);
+                Intent intent = new Intent(HomeActivity.this, LeadListingActivity.class);
                 startActivity(intent);
             }
         });
@@ -304,10 +298,10 @@ public class HomeActivity extends AppCompatActivity {
                     //Extecting bannerData details
 
                     average_duration = bannerData.getString("average_duration");
-                    incoming = bannerData.getString("incoming");
+  //                  incoming = bannerData.getString("incoming");
                     leadTotal = bannerData.getString("leadTotal");
-                    missed = bannerData.getString("missed");
-                    outgoing = bannerData.getString("outgoing");
+//                    missed = bannerData.getString("missed");
+//                    outgoing = bannerData.getString("outgoing");
                     totalCalls = bannerData.getString("totalCalls");
 
                     // Code for set JsonResponse Data
@@ -340,12 +334,10 @@ public class HomeActivity extends AppCompatActivity {
                     // Iterating Calender jsonResponce
 
                     for (int i = 0; i < calenerResult.length(); i++) {
-                        JSONObject c = calenerResult.getJSONObject(i);
+                        JSONObject object = calenerResult.getJSONObject(i);
                         HomeCalenderRsltGterStter packk = new HomeCalenderRsltGterStter();
-                        packk.setCount(c.getString("count"));
-                        packk.setDate(c.getString("date"));
-                        packk.setKey(c.getString("key"));
-                        packk.setDateday(dateFormatter(c.getString("dateDay")));
+                        packk.setCount(object.getString("count"));
+
                         calnderArryLst.add(packk);
                         Log.d("itr", packk.toString());
 

@@ -75,7 +75,9 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
                     String email = leadFormBinding.email.getText().toString();
                     String firstName = leadFormBinding.firstName.getText().toString();
                     String lastName = leadFormBinding.lastName.getText().toString();
-                    apiRequest(mobileNumber, email, "1", source, firstName + " " + lastName, ContectLeadForm.this);
+                    String city = leadFormBinding.city.getText().toString();
+
+                    apiRequest(mobileNumber, email, "1", source, firstName + " " + lastName,city, ContectLeadForm.this);
 
 
                 }
@@ -88,7 +90,7 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
 
     }
 
-    private void apiRequest(String mobile_number, String email_id, String category_code, String source, String name, Context context) {
+    private void apiRequest(String mobile_number, String email_id, String category_code, String source, String name,String city, Context context) {
 
 
         SharedPreferences preferences = context.getSharedPreferences("loginData", MODE_PRIVATE);
@@ -114,7 +116,7 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
 
                     Toast.makeText(context, respObj.getString("message"), Toast.LENGTH_SHORT).show();
 
-
+                    finish();
                     mProgressDialog.hide();
 
                 } catch (JSONException e) {
@@ -147,6 +149,7 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
                 params.put("category_code", category_code);
                 params.put("source", source);
                 params.put("name", name);
+                params.put("city", city);
 
 
                 return params;
@@ -165,11 +168,11 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
         Spinner spin2 = (Spinner) parent;
         if (spin.getId() == R.id.referenceSpinner) {
             Toast.makeText(this, "Your choose :" + sourceCodeyArraylst.get(position).getId(), Toast.LENGTH_SHORT).show();
-            source = sourceCodeyArraylst.get(position).getName();
+            source = sourceCodeyArraylst.get(position).getCode();
             Log.d("str", source);
         }
         if (spin2.getId() == R.id.categorySpinner) {
-            categroy = categoryArraylst.get(position).getName();
+            categroy = categoryArraylst.get(position).getSub_category_present();
             Toast.makeText(this, "Your choose :" + categoryArraylst.get(position).getId(), Toast.LENGTH_SHORT).show();
             Log.d("str", categroy);
         }
