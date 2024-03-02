@@ -1,6 +1,7 @@
 package com.example.isolution.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class HomeCalenderAdapter extends RecyclerView.Adapter<HomeCalenderAdapte
     public void onBindViewHolder(@NonNull HomeCalenderAdapter.ViewHolder holder, int position) {
         HomeCalenderRsltGterStter aa = arraylist.get(position);
         holder.itemHomeCalenderBinding.singleDate.setText(aa.getDateday());
+        Log.d("aa",aa.getDateday());
         holder.itemHomeCalenderBinding.singleCard.setOnClickListener(view ->{
             
         });

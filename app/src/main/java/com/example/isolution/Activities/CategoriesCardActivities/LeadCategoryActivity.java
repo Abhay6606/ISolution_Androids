@@ -3,6 +3,7 @@ package com.example.isolution.Activities.CategoriesCardActivities;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,6 +22,18 @@ public class LeadCategoryActivity extends AppCompatActivity {
         leadCategoryBinding = ActivityLeadCategoryBinding.inflate(getLayoutInflater());
         setContentView(leadCategoryBinding.getRoot());
 
+        Bundle bundle = getIntent().getExtras();
+        String name = bundle.getString("name", "Default");
+        String number=bundle.getString("mobile_number","Default");
+        String  status= bundle.getString("disp_pri_code_name","Default");
+        String topic= bundle.getString("category_code_name","Defoult");
+
+        leadCategoryBinding.namee.setText(name);
+        leadCategoryBinding.numberr.setText(number);
+        leadCategoryBinding.statuss.setText(status);
+
+
+
         leadCategoryBinding.disposeLead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,8 +50,14 @@ public class LeadCategoryActivity extends AppCompatActivity {
                 customDilogboxBinding = CustomDilogboxBinding.inflate(getLayoutInflater());
                 Dialog dialog = new Dialog(LeadCategoryActivity.this);
                dialog.setContentView(customDilogboxBinding.getRoot());
-  //              dialog.setContentView(R.layout.custom_dilogbox);
                 dialog.setCancelable(false);
+
+
+
+                customDilogboxBinding.conName.setText(name);
+                customDilogboxBinding.conNum.setText(number);
+                customDilogboxBinding.conStatus.setText(status);
+                customDilogboxBinding.conTopic.setText(topic);
                 customDilogboxBinding.backBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

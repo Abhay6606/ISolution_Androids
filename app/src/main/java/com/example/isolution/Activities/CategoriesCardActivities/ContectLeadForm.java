@@ -64,7 +64,7 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
             public void onClick(View v) {
 
 
-                if (TextUtils.isEmpty(leadFormBinding.firstName.getText()) || TextUtils.isEmpty(leadFormBinding.lastName.getText()) || TextUtils.isEmpty(leadFormBinding.email.getText()) || TextUtils.isEmpty(leadFormBinding.mobileNumber.getText()) || TextUtils.isEmpty(leadFormBinding.city.getText()) || TextUtils.isEmpty(leadFormBinding.leadSource.getText())) {
+                if (TextUtils.isEmpty(leadFormBinding.firstName.getText()) || TextUtils.isEmpty(leadFormBinding.lastName.getText()) || TextUtils.isEmpty(leadFormBinding.email.getText()) || TextUtils.isEmpty(leadFormBinding.mobileNumber.getText()) || TextUtils.isEmpty(leadFormBinding.city.getText())) {
 
                     Toast.makeText(ContectLeadForm.this, "You missing some credentials ", Toast.LENGTH_SHORT).show();
 

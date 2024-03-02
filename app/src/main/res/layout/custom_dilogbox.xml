@@ -10,10 +10,10 @@
         android:id="@+id/cardView18"
         android:layout_width="134dp"
         android:layout_height="41dp"
-        android:layout_marginStart="80dp"
         android:layout_marginTop="16dp"
         app:cardBackgroundColor="@color/orange"
         app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -40,8 +40,8 @@
 
     <TextView
         android:id="@+id/textView75"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="91dp"
+        android:layout_height="19dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:text="Contect Name :-"
@@ -139,7 +139,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView92" />
 
     <TextView
-        android:id="@+id/textView94"
+        android:id="@+id/conName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -151,7 +151,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView18" />
 
     <TextView
-        android:id="@+id/textView95"
+        android:id="@+id/conNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -160,10 +160,10 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/textView90"
-        app:layout_constraintTop_toBottomOf="@+id/textView94" />
+        app:layout_constraintTop_toBottomOf="@+id/conName" />
 
     <TextView
-        android:id="@+id/textView96"
+        android:id="@+id/conStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -175,7 +175,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView90" />
 
     <TextView
-        android:id="@+id/textView97"
+        android:id="@+id/conDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -187,7 +187,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView91" />
 
     <TextView
-        android:id="@+id/textView98"
+        android:id="@+id/conTopic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -196,15 +196,13 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/textView93"
-        app:layout_constraintTop_toBottomOf="@+id/textView97" />
+        app:layout_constraintTop_toBottomOf="@+id/conDate" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="40dp"
         android:padding="20dp"
         app:cardCornerRadius="15dp"

@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.isolution.Adapter.CallingDetailAdapter;
+import com.example.isolution.Model.CallDataGetterSetter;
 import com.example.isolution.Model.CallLogsModelGetter;
 import com.example.isolution.Model.CallingDetailsGetterSetter;
 import com.example.isolution.R;
@@ -48,6 +49,8 @@ import java.util.Map;
 public class CallingDetailsActivity extends AppCompatActivity {
     ActivityCallingDetailsBinding callingDetailsBinding;
     ArrayList<CallLogsModelGetter> arrayList = new ArrayList<>();
+
+    ArrayList<CallDataGetterSetter> callDataarraylist=new ArrayList<>();
     CallingDetailAdapter adapter;
     JSONArray jsonArray=new JSONArray();
 
@@ -57,13 +60,14 @@ public class CallingDetailsActivity extends AppCompatActivity {
         callingDetailsBinding = ActivityCallingDetailsBinding.inflate(getLayoutInflater());
         setContentView(callingDetailsBinding.getRoot());
 
+
+        apiRequestt();
         askPermission();
+
 
         // Adapter for RecyclerView (Access Contect logs)
 
-        callingDetailsBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new CallingDetailAdapter(this, arrayList);
-        callingDetailsBinding.recyclerView.setAdapter(adapter);
+
         //===========================================================================================
 
         // Click Listeners
@@ -261,6 +265,85 @@ public class CallingDetailsActivity extends AppCompatActivity {
 
         };
         queue.add(request);
+
+    }
+
+    private void apiRequestt() {
+
+        SharedPreferences preferences = getSharedPreferences("loginData", MODE_PRIVATE);
+        String userId = preferences.getString("user_id", "null");
+        String token = preferences.getString("token", "null");
+
+
+        String url = "https://callcrm.techfreelancepro.com/api/callDetails/list?date_start=2021-02-26&date_end=2024-03-01&call_status=all&call_type=all";
+        RequestQueue queue = Volley.newRequestQueue(CallingDetailsActivity.this);
+        Log.d("nk", "qye");
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject respObj = new JSONObject(response);
+
+                    JSONObject result = respObj.getJSONObject("result");
+                    JSONObject bannerData=result.getJSONObject("bannerData");
+                    JSONObject  masterData=result.getJSONObject("masterData");
+                    JSONArray callData=result.getJSONArray("callData");
+
+                    // Iterate CallData JSONArray
+
+                    for (int i=0;i<callData.length();i++){
+                        JSONObject object=callData.getJSONObject(i);
+                        CallDataGetterSetter pack=new CallDataGetterSetter();
+                        pack.setCall_end_time(object.getString("call_end_time"));
+                        pack.setCall_start_time(object.getString("call_start_time"));
+                        pack.setCall_status(object.getString("call_status"));
+                        pack.setCall_status_name(object.getString("call_status_name"));
+                        pack.setCreated_at(object.getString("created_at"));
+                        pack.setHistory_id(object.getString("history_id"));
+                        pack.setId(object.getString("id"));
+                        pack.setLead_id(object.getString("lead_id"));
+                        pack.setLead_name(object.getString("lead_name"));
+                        pack.setMobile_number(object.getString("mobile_number"));
+                        pack.setRinging(object.getString("ringing"));
+                        pack.setTalktime(object.getString("talktime"));
+                        pack.setTotal_time(object.getString("total_time"));
+                        pack.setType(object.getString("type"));
+                        pack.setType_name(object.getString("type_name"));
+                        pack.setUpdated_at(object.getString("updated_at"));
+                        pack.setUser_id(object.getString("user_id"));
+
+                        callDataarraylist.add(pack);
+
+                    }
+                    callingDetailsBinding.recyclerView.setLayoutManager(new LinearLayoutManager(CallingDetailsActivity.this));
+                    adapter = new CallingDetailAdapter(CallingDetailsActivity.this, callDataarraylist);
+                    callingDetailsBinding.recyclerView.setAdapter(adapter);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(CallingDetailsActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("x-user-id", userId);
+                params.put("Authorization", "Bearer " + token);
+                return params;
+            }
+        };
+        queue.add(request);
+
 
     }
 

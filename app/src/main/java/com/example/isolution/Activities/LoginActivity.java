@@ -72,15 +72,11 @@ public class LoginActivity extends AppCompatActivity {
                 mProgressDialog.setTitle("Please Wait..");
                 mProgressDialog.setMessage("Logging in...");
 
-
-
-
                 if (TextUtils.isEmpty(loginBinding.userName.getText().toString())) {
                     Toast.makeText(LoginActivity.this, "Enter the Username", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(loginBinding.password.getText().toString())) {
                     Toast.makeText(LoginActivity.this, "Enter the Password ", Toast.LENGTH_SHORT).show();
                 } else {
-                    mProgressDialog.show();
                     tokenGenerate(loginBinding.userName.getText().toString().trim(), loginBinding.password.getText().toString().trim());
                 }
 
@@ -117,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         String url =   "https://callcrm.techfreelancepro.com/api/tokenGenerate";
+        mProgressDialog.show();
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -233,7 +230,7 @@ public class LoginActivity extends AppCompatActivity {
                     break;
             }
 
-            JSONObject jsonObject=new JSONObject();
+            JSONObject jsonObject= new JSONObject();
 
             try {
                 jsonObject.put("mobile_number",phNumber);
@@ -256,7 +253,9 @@ public class LoginActivity extends AppCompatActivity {
 
         managedCursor.close();
 
-        apiRequest();startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+        apiRequest();
+
+        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
         finish();
 
         return logListArrayList;

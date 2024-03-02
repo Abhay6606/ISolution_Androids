@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.isolution.Model.CallDataGetterSetter;
 import com.example.isolution.Model.CallLogsModelGetter;
 import com.example.isolution.Model.CallingDetailsGetterSetter;
 import com.example.isolution.databinding.CallingDetailsItemBinding;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
 public class CallingDetailAdapter extends RecyclerView.Adapter<CallingDetailAdapter.ViewHolder> {
     LayoutInflater inflater;
     Context context;
-    ArrayList<CallLogsModelGetter> arrayList=new ArrayList<>();
+    ArrayList<CallDataGetterSetter> arrayList=new ArrayList<>();
   CallingDetailsItemBinding callingDetailsItemBinding;
 
-    public CallingDetailAdapter(Context context, ArrayList<CallLogsModelGetter> arrayList){
+    public CallingDetailAdapter(Context context, ArrayList<CallDataGetterSetter> arrayList){
         this.context=context;
         this.arrayList=arrayList;
         inflater=LayoutInflater.from(context);
@@ -35,12 +36,11 @@ public class CallingDetailAdapter extends RecyclerView.Adapter<CallingDetailAdap
 
     @Override
     public void onBindViewHolder(@NonNull CallingDetailAdapter.ViewHolder holder, int position) {
-        CallLogsModelGetter arraylistPosition=arrayList.get(position);
-        callingDetailsItemBinding.name.setText(arraylistPosition.getCallerName());
-        callingDetailsItemBinding.number.setText(arraylistPosition.getPhoneNumber());
-        callingDetailsItemBinding.time.setText(arraylistPosition.getCallduration());
-        callingDetailsItemBinding.callDuration.setText(arraylistPosition.getCallTime());
-
+        CallDataGetterSetter arraylistPosition=arrayList.get(position);
+        callingDetailsItemBinding.name.setText(arraylistPosition.getLead_name());
+        callingDetailsItemBinding.number.setText(arraylistPosition.getMobile_number());
+        callingDetailsItemBinding.time.setText(arraylistPosition.getTalktime());
+        callingDetailsItemBinding.callDuration.setText(arraylistPosition.getCall_start_time());
 //        Picasso.get().load(arraylistPosition.getImage()).into(callingDetailsItemBinding.image);
     }
 

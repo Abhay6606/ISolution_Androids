@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.Manifest;
 import android.app.Activity;
@@ -55,6 +56,7 @@ public class HomeActivity extends AppCompatActivity {
 
     ActivityHomeBinding homeBinding;
     ArrayList<HomePercentageArrayGtterStter> perctgeArraylst = new ArrayList<>();
+
     ArrayList<HomeCalenderRsltGterStter> calnderArryLst = new ArrayList<>();
 
     // Strings for userData
@@ -62,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
 
     // Strings for bannerData
     String average_duration, incoming, leadTotal, missed, outgoing, totalCalls;
+    String date;
     ProgressDialog mProgressDialog;
 
 
@@ -71,15 +74,17 @@ public class HomeActivity extends AppCompatActivity {
         homeBinding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(homeBinding.getRoot());
 
-        SharedPreferences pref=getSharedPreferences("check",MODE_PRIVATE);
+        SharedPreferences pref = getSharedPreferences("check", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit().putBoolean("flag", true);
         editor.apply();
 
+        mProgressDialog = new ProgressDialog(HomeActivity.this);
+        mProgressDialog.setTitle("Please Wait..");
+        mProgressDialog.setMessage("Logging in...");
 
 
 
         requestPerm();
-
 
 
         //Click Listeners
@@ -142,7 +147,10 @@ public class HomeActivity extends AppCompatActivity {
         homeBinding.includeDrawer.drwrLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(HomeActivity.this, LogoutActivity.class);
+
+
+
+//                redirectActivity(HomeActivity.this, LogoutActivity.class);
             }
         });
         homeBinding.includeDrawer.drwrProfile.setOnClickListener(new View.OnClickListener() {
@@ -217,7 +225,9 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        
+
+
+        mProgressDialog.show();
         getApiRequest();
 
         super.onResume();
@@ -246,6 +256,8 @@ public class HomeActivity extends AppCompatActivity {
         closedDrawer(homeBinding.drawerLayout);
     }
 
+
+
     // Method for Api
 
     private JSONObject getApiRequest() {
@@ -254,10 +266,7 @@ public class HomeActivity extends AppCompatActivity {
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
 
-        mProgressDialog = new ProgressDialog(HomeActivity.this);
-        mProgressDialog.setTitle("Please Wait..");
-        mProgressDialog.setMessage("Logging in...");
-        mProgressDialog.show();
+
 
 
         String url = "https://callcrm.techfreelancepro.com/api/dashboard/list?date_start=2024-02-01&date_end=2024-02-16";
@@ -298,7 +307,7 @@ public class HomeActivity extends AppCompatActivity {
                     //Extecting bannerData details
 
                     average_duration = bannerData.getString("average_duration");
-  //                  incoming = bannerData.getString("incoming");
+                    //                  incoming = bannerData.getString("incoming");
                     leadTotal = bannerData.getString("leadTotal");
 //                    missed = bannerData.getString("missed");
 //                    outgoing = bannerData.getString("outgoing");
@@ -334,18 +343,24 @@ public class HomeActivity extends AppCompatActivity {
                     // Iterating Calender jsonResponce
 
                     for (int i = 0; i < calenerResult.length(); i++) {
+
                         JSONObject object = calenerResult.getJSONObject(i);
                         HomeCalenderRsltGterStter packk = new HomeCalenderRsltGterStter();
+                        // Saturday March 2 2024
+                        packk.setDate(object.getString("date"));
+                        packk.setKey(object.getString("key"));
                         packk.setCount(object.getString("count"));
+                        date=dateFormatter(object.getString("dateDay"));
+                        packk.setDateday(date);
+                        Log.d("itr",date);
 
                         calnderArryLst.add(packk);
-                        Log.d("itr", packk.toString());
 
                     }
                     mProgressDialog.hide();
-                    HomeCalenderAdapter adapter=new HomeCalenderAdapter(calnderArryLst,HomeActivity.this);
-                    homeBinding.recyclerView.setAdapter(adapter);
 
+                    HomeCalenderAdapter adapter = new HomeCalenderAdapter(calnderArryLst, HomeActivity.this);
+                    homeBinding.recyclerView.setAdapter(adapter);
 
 
                 } catch (Exception e) {
@@ -358,7 +373,7 @@ public class HomeActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                mProgressDialog.hide();
             }
         }) {
 
@@ -375,8 +390,10 @@ public class HomeActivity extends AppCompatActivity {
         return new JSONObject();
 
     }
-    private String dateFormatter(String string){
-      //  String dateString = "Friday February 16 2024";
+
+    private String dateFormatter(String string) {
+        //  String dateString = "Friday February 16 2024";
+
         SimpleDateFormat formatter = new SimpleDateFormat("EEEE MMMM dd yyyy");
         Date date = null;
         try {
@@ -391,24 +408,24 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+
     //====================================
-    // code for Retrieve data callLogs
+    // code for taking Permition
 
-
-    private  void requestPerm(){
+    private void requestPerm() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.READ_CALL_LOG,
                 Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.READ_CONTACTS,
-                Manifest.permission.CALL_PHONE},1000);
+                Manifest.permission.CALL_PHONE}, 1000);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode==1000){
-            if (grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this,"Granted",Toast.LENGTH_SHORT).show();
+        if (requestCode == 1000) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Granted", Toast.LENGTH_SHORT).show();
             }
         }
     }
