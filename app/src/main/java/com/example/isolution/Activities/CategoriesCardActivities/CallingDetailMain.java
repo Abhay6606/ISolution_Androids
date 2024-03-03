@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.os.Bundle;
@@ -62,6 +63,20 @@ public class CallingDetailMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                callingDetailMainBinding.today.setBackgroundResource(R.drawable.selected_tab);
+                callingDetailMainBinding.today.setTextColor(Color.parseColor("#ffffff"));
+
+                callingDetailMainBinding.lastSeven.setBackgroundResource(R.drawable.orange_border_rectangle);
+                callingDetailMainBinding.lastSeven.setTextColor(Color.parseColor("#e53538"));
+
+                callingDetailMainBinding.lastThirty.setBackgroundResource(R.drawable.orange_border_rectangle);
+                callingDetailMainBinding.lastThirty.setTextColor(Color.parseColor("#e53538"));
+
+
+                callingDetailMainBinding.select.setBackgroundResource(R.drawable.orange_border_rectangle);
+                callingDetailMainBinding.select.setTextColor(Color.parseColor("#e53538"));
+
+
                 currentdate();
                 startDateString=previousdate(0);
 
@@ -74,6 +89,20 @@ public class CallingDetailMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                callingDetailMainBinding.lastSeven.setBackgroundResource(R.drawable.selected_tab);
+                callingDetailMainBinding.lastSeven.setTextColor(Color.parseColor("#ffffff"));
+
+                callingDetailMainBinding.today.setBackgroundResource(R.drawable.orange_border_rectangle);
+                callingDetailMainBinding.today.setTextColor(Color.parseColor("#e53538"));
+
+                callingDetailMainBinding.lastThirty.setBackgroundResource(R.drawable.orange_border_rectangle);
+                callingDetailMainBinding.lastThirty.setTextColor(Color.parseColor("#e53538"));
+
+
+                callingDetailMainBinding.select.setBackgroundResource(R.drawable.orange_border_rectangle);
+                callingDetailMainBinding.select.setTextColor(Color.parseColor("#e53538"));
+
+
                 currentdate();
                 startDateString=previousdate(7);
                 apiRequestt();
@@ -85,6 +114,21 @@ public class CallingDetailMain extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+
+                callingDetailMainBinding.lastThirty.setBackgroundResource(R.drawable.selected_tab);
+                callingDetailMainBinding.lastThirty.setTextColor(Color.parseColor("#ffffff"));
+
+                callingDetailMainBinding.lastSeven.setBackgroundResource(R.drawable.orange_border_rectangle);
+                callingDetailMainBinding.lastSeven.setTextColor(Color.parseColor("#e53538"));
+
+                callingDetailMainBinding.today.setBackgroundResource(R.drawable.orange_border_rectangle);
+                callingDetailMainBinding.today.setTextColor(Color.parseColor("#e53538"));
+
+
+                callingDetailMainBinding.select.setBackgroundResource(R.drawable.orange_border_rectangle);
+                callingDetailMainBinding.select.setTextColor(Color.parseColor("#e53538"));
+
+
 
                 currentdate();
                 startDateString=previousdate(30);
@@ -173,9 +217,9 @@ public class CallingDetailMain extends AppCompatActivity {
                     JSONObject  masterData=result.getJSONObject("masterData");
                     JSONArray callData=result.getJSONArray("callData");
 
-                    callingDetailMainBinding.incomingPercent.setText(bannerData.getString("incomingPer"));
-                    callingDetailMainBinding.outGoingPercent.setText(bannerData.getString("outgoingPer"));
-                    callingDetailMainBinding.missedPercent.setText(bannerData.getString("missedPer"));
+                    callingDetailMainBinding.incomingPercent.setText(bannerData.getString("incomingPer")+"%");
+                    callingDetailMainBinding.outGoingPercent.setText(bannerData.getString("outgoingPer")+"%");
+                    callingDetailMainBinding.missedPercent.setText(bannerData.getString("missedPer")+"%");
 
                     // Iterate CallData JSONArray
 
@@ -283,6 +327,21 @@ public class CallingDetailMain extends AppCompatActivity {
                 startDateString = sdf.format(new Date(startDate));
                 endDateString = sdf.format(new Date(endDate));
 
+
+                callingDetailMainBinding.select.setBackgroundResource(R.drawable.selected_tab);
+                callingDetailMainBinding.select.setTextColor(Color.parseColor("#ffffff"));
+
+                callingDetailMainBinding.lastSeven.setBackgroundResource(R.drawable.orange_border_rectangle);
+                callingDetailMainBinding.lastSeven.setTextColor(Color.parseColor("#e53538"));
+
+                callingDetailMainBinding.lastThirty.setBackgroundResource(R.drawable.orange_border_rectangle);
+                callingDetailMainBinding.lastThirty.setTextColor(Color.parseColor("#e53538"));
+
+
+                callingDetailMainBinding.today.setBackgroundResource(R.drawable.orange_border_rectangle);
+                callingDetailMainBinding.today.setTextColor(Color.parseColor("#e53538"));
+
+
                 apiRequestt();
             }
 
@@ -299,6 +358,11 @@ public class CallingDetailMain extends AppCompatActivity {
         android.icu.text.SimpleDateFormat df = new android.icu.text.SimpleDateFormat("yyy-MM-dd", Locale.getDefault());
         endDateString = df.format(c);
         startDateString = df.format(c);
+
+
+        callingDetailMainBinding.today.setBackgroundResource(R.drawable.selected_tab);
+        callingDetailMainBinding.today.setTextColor(Color.parseColor("#ffffff"));
+
 
         apiRequestt();
 
