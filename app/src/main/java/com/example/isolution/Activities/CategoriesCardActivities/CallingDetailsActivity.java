@@ -40,6 +40,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -52,6 +53,7 @@ public class CallingDetailsActivity extends AppCompatActivity {
 
     ArrayList<CallDataGetterSetter> callDataarraylist=new ArrayList<>();
     CallingDetailAdapter adapter;
+    String startDateString="",endDateString="",call_status="";
     JSONArray jsonArray=new JSONArray();
 
     @Override
@@ -59,10 +61,15 @@ public class CallingDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         callingDetailsBinding = ActivityCallingDetailsBinding.inflate(getLayoutInflater());
         setContentView(callingDetailsBinding.getRoot());
+        Bundle extras = getIntent().getExtras();
 
+        //Called from Class1 show "class 1 string"
+        //Called from Class2 show "class 2 string"
+        call_status=(extras.getString("call_status"));
 
-        apiRequestt();
         askPermission();
+
+        Toast.makeText(this, "Select Date Range", Toast.LENGTH_SHORT).show();
 
 
         // Adapter for RecyclerView (Access Contect logs)
@@ -75,12 +82,14 @@ public class CallingDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 datePickerDialog();
+
             }
         });
         callingDetailsBinding.endDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 datePickerDialog();
+
             }
         });
 
@@ -101,17 +110,17 @@ public class CallingDetailsActivity extends AppCompatActivity {
                 Long startDate = selection.first;
                 Long endDate = selection.second;
 
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                String startDateString = sdf.format(new Date(startDate));
-                String endDateString = sdf.format(new Date(endDate));
-
-                String selectedDateRange = startDateString + " - " + endDateString;
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                 startDateString = sdf.format(new Date(startDate));
+                 endDateString = sdf.format(new Date(endDate));
 
 //               selectedDate.setText(selectedDateRange);
                 callingDetailsBinding.startDate.setText(startDateString);
                 callingDetailsBinding.endDate.setText(endDateString);
 
+                apiRequestt();
             }
+
         });
         datePicker.show(getSupportFragmentManager(), "DATE_PICKER");
     }
@@ -207,8 +216,6 @@ public class CallingDetailsActivity extends AppCompatActivity {
 
         managedCursor.close();
 
-        apiRequest(this);
-
 //        return sb.toString();
         return logListArrayList;
     }
@@ -275,7 +282,7 @@ public class CallingDetailsActivity extends AppCompatActivity {
         String token = preferences.getString("token", "null");
 
 
-        String url = "https://callcrm.techfreelancepro.com/api/callDetails/list?date_start=2021-02-26&date_end=2024-03-01&call_status=all&call_type=all";
+        String url = "https://callcrm.techfreelancepro.com/api/callDetails/list?date_start="+startDateString+"&date_end="+endDateString+"&call_status="+call_status+"&call_type=all";
         RequestQueue queue = Volley.newRequestQueue(CallingDetailsActivity.this);
         Log.d("nk", "qye");
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -284,6 +291,8 @@ public class CallingDetailsActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 try {
+
+                    callDataarraylist.clear();
                     JSONObject respObj = new JSONObject(response);
 
                     JSONObject result = respObj.getJSONObject("result");
@@ -343,6 +352,24 @@ public class CallingDetailsActivity extends AppCompatActivity {
             }
         };
         queue.add(request);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        android.icu.text.SimpleDateFormat df = new android.icu.text.SimpleDateFormat("yyy-MM-dd", Locale.getDefault());
+        endDateString = df.format(c);
+        startDateString = df.format(c);
+
+        apiRequestt();
+
+        super.onResume();
+
 
 
     }

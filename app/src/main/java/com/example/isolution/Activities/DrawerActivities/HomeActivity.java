@@ -1,11 +1,12 @@
 package com.example.isolution.Activities.DrawerActivities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.util.Pair;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.Manifest;
 import android.app.Activity;
@@ -13,6 +14,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -28,9 +31,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.isolution.Activities.AllCategoriesActivity;
 import com.example.isolution.Activities.CategoriesCardActivities.CallingDetailMain;
+import com.example.isolution.Activities.CategoriesCardActivities.CallingTeamDetails;
 import com.example.isolution.Activities.CategoriesCardActivities.LeadListingActivity;
 import com.example.isolution.Activities.CategoriesCardActivities.ContectLeadForm;
-import com.example.isolution.Activities.CategoriesCardActivities.MainLeadActivity;
 import com.example.isolution.Activities.ChatActivity;
 import com.example.isolution.Activities.FolderActivity;
 import com.example.isolution.Adapter.HomeCalenderAdapter;
@@ -38,6 +41,8 @@ import com.example.isolution.Model.HomeCalenderRsltGterStter;
 import com.example.isolution.Model.HomePercentageArrayGtterStter;
 import com.example.isolution.R;
 import com.example.isolution.databinding.ActivityHomeBinding;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.navigation.NavigationBarView;
 import com.squareup.picasso.Picasso;
 
@@ -46,9 +51,13 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
@@ -65,6 +74,7 @@ public class HomeActivity extends AppCompatActivity {
     // Strings for bannerData
     String average_duration, incoming, leadTotal, missed, outgoing, totalCalls;
     String date;
+    String startDateString="",endDateString="";
     ProgressDialog mProgressDialog;
 
 
@@ -88,6 +98,102 @@ public class HomeActivity extends AppCompatActivity {
 
 
         //Click Listeners
+
+
+        homeBinding.today.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+
+                homeBinding.today.setBackgroundResource(R.drawable.selected_tab);
+                homeBinding.today.setTextColor(Color.parseColor("#ffffff"));
+
+                homeBinding.lastSeven.setBackgroundResource(R.drawable.orange_border_rectangle);
+                homeBinding.lastSeven.setTextColor(Color.parseColor("#e53538"));
+
+                homeBinding.lastThirty.setBackgroundResource(R.drawable.orange_border_rectangle);
+                homeBinding.lastThirty.setTextColor(Color.parseColor("#e53538"));
+
+
+                homeBinding.select.setBackgroundResource(R.drawable.orange_border_rectangle);
+                homeBinding.select.setTextColor(Color.parseColor("#e53538"));
+
+                currentdate();
+                startDateString=previousdate(0);
+
+                getApiRequest();
+
+            }
+        });
+        homeBinding.lastSeven.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+
+                homeBinding.lastSeven.setBackgroundResource(R.drawable.selected_tab);
+                homeBinding.lastSeven.setTextColor(Color.parseColor("#ffffff"));
+
+                homeBinding.today.setBackgroundResource(R.drawable.orange_border_rectangle);
+                homeBinding.today.setTextColor(Color.parseColor("#e53538"));
+
+                homeBinding.lastThirty.setBackgroundResource(R.drawable.orange_border_rectangle);
+                homeBinding.lastThirty.setTextColor(Color.parseColor("#e53538"));
+
+
+                homeBinding.select.setBackgroundResource(R.drawable.orange_border_rectangle);
+                homeBinding.select.setTextColor(Color.parseColor("#e53538"));
+
+
+                currentdate();
+                startDateString=previousdate(7);
+                getApiRequest();
+
+
+            }
+        });
+        homeBinding.lastThirty.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+
+                homeBinding.lastThirty.setBackgroundResource(R.drawable.selected_tab);
+                homeBinding.lastThirty.setTextColor(Color.parseColor("#ffffff"));
+
+                homeBinding.lastSeven.setBackgroundResource(R.drawable.orange_border_rectangle);
+                homeBinding.lastSeven.setTextColor(Color.parseColor("#e53538"));
+
+                homeBinding.today.setBackgroundResource(R.drawable.orange_border_rectangle);
+                homeBinding.today.setTextColor(Color.parseColor("#e53538"));
+
+
+                homeBinding.select.setBackgroundResource(R.drawable.orange_border_rectangle);
+                homeBinding.select.setTextColor(Color.parseColor("#e53538"));
+
+
+
+                currentdate();
+                startDateString=previousdate(30);
+                getApiRequest();
+
+
+            }
+        });
+        homeBinding.select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                datePickerDialog();
+            }
+        });
+
+
+
+
+
+
+
+
+
         homeBinding.cardNewLeads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,14 +211,14 @@ public class HomeActivity extends AppCompatActivity {
         homeBinding.cardLeadGroupDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, LeadListingActivity.class);
+                Intent intent = new Intent(HomeActivity.this, CallingTeamDetails.class);
                 startActivity(intent);
             }
         });
         homeBinding.cardLeadInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, MainLeadActivity.class);
+                Intent intent = new Intent(HomeActivity.this, LeadListingActivity.class);
                 startActivity(intent);
             }
         });
@@ -227,7 +333,17 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
 
 
-        mProgressDialog.show();
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        android.icu.text.SimpleDateFormat df = new android.icu.text.SimpleDateFormat("yyy-MM-dd", Locale.getDefault());
+        endDateString = df.format(c);
+        startDateString = df.format(c);
+
+        homeBinding.today.setBackgroundResource(R.drawable.selected_tab);
+        homeBinding.today.setTextColor(Color.parseColor("#ffffff"));
+
+
         getApiRequest();
 
         super.onResume();
@@ -262,6 +378,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private JSONObject getApiRequest() {
 
+        mProgressDialog.show();
         SharedPreferences preferences = getSharedPreferences("loginData", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
@@ -269,7 +386,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        String url = "https://callcrm.techfreelancepro.com/api/dashboard/list?date_start=2024-02-01&date_end=2024-02-16";
+        String url = "https://callcrm.techfreelancepro.com/api/dashboard/list?date_start="+startDateString+"&date_end="+endDateString;
         RequestQueue queue = Volley.newRequestQueue(HomeActivity.this);
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -277,6 +394,9 @@ public class HomeActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.d("check", response.toString());
                 try {
+                    calnderArryLst.clear();
+                    perctgeArraylst.clear();
+
                     JSONObject respObj = new JSONObject(response);
                     JSONObject result = respObj.getJSONObject("result");
                     JSONArray percentageArray = result.getJSONArray("percentageArray");
@@ -428,5 +548,68 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(this, "Granted", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String previousdate(int num)
+    {
+        final LocalDate date = LocalDate.now();
+        final LocalDate dateMinus7Days = date.minusDays(num);
+
+        final String formattedDate = dateMinus7Days.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        System.out.println(formattedDate);
+
+        return formattedDate;
+    }
+
+    public void currentdate()
+    {
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        android.icu.text.SimpleDateFormat df = new android.icu.text.SimpleDateFormat("yyy-MM-dd", Locale.getDefault());
+        endDateString = df.format(c);
+
+
+    }
+    private void datePickerDialog() {
+        MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
+        builder.setTitleText("Select Date Range");
+        builder.setTheme(R.style.MyMaterialCalendarTheme);
+
+        MaterialDatePicker<Pair<Long, Long>> datePicker = builder.build();
+        datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Pair<Long, Long>>() {
+            @Override
+            public void onPositiveButtonClick(Pair<Long, Long> selection) {
+                Long startDate = selection.first;
+                Long endDate = selection.second;
+
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                startDateString = sdf.format(new Date(startDate));
+                endDateString = sdf.format(new Date(endDate));
+
+                homeBinding.select.setBackgroundResource(R.drawable.selected_tab);
+                homeBinding.select.setTextColor(Color.parseColor("#ffffff"));
+
+                homeBinding.lastSeven.setBackgroundResource(R.drawable.orange_border_rectangle);
+                homeBinding.lastSeven.setTextColor(Color.parseColor("#e53538"));
+
+                homeBinding.lastThirty.setBackgroundResource(R.drawable.orange_border_rectangle);
+                homeBinding.lastThirty.setTextColor(Color.parseColor("#e53538"));
+
+
+                homeBinding.today.setBackgroundResource(R.drawable.orange_border_rectangle);
+                homeBinding.today.setTextColor(Color.parseColor("#e53538"));
+
+
+
+                getApiRequest();
+            }
+
+        });
+        datePicker.show(getSupportFragmentManager(), "DATE_PICKER");
     }
 }

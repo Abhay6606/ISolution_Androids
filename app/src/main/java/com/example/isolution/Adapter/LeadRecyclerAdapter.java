@@ -42,8 +42,8 @@ public class LeadRecyclerAdapter extends RecyclerView.Adapter<LeadRecyclerAdapte
         FetchAllLeadsGetterSetter arraylistposion=arrayList.get(position);
         leadRecyclerItemBinding.itemName.setText(arraylistposion.getName());
         leadRecyclerItemBinding.itemCity.setText(arraylistposion.getCity());
-        leadRecyclerItemBinding.itemCategory.setText(arraylistposion.getCategory_code());
-        leadRecyclerItemBinding.itemStatus.setText(arraylistposion.getStatus());
+        leadRecyclerItemBinding.itemCategory.setText(arraylistposion.getCategory_code_name());
+        leadRecyclerItemBinding.itemStatus.setText(arraylistposion.getDisp_pri_code_name());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

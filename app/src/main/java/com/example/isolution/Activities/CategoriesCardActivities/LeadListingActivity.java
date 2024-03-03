@@ -1,12 +1,18 @@
 package com.example.isolution.Activities.CategoriesCardActivities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -20,13 +26,21 @@ import com.example.isolution.Activities.LoginActivity;
 import com.example.isolution.Adapter.LeadRecyclerAdapter;
 import com.example.isolution.Model.FetchAllLeadsGetterSetter;
 import com.example.isolution.Model.GetterSetter;
+import com.example.isolution.R;
 import com.example.isolution.databinding.ActivityContactLeadBinding;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class LeadListingActivity extends AppCompatActivity {
@@ -34,6 +48,7 @@ public class LeadListingActivity extends AppCompatActivity {
     ArrayList<FetchAllLeadsGetterSetter> fetchLeadArrayList = new ArrayList<>();
 
     ProgressDialog mProgressDialog;
+    String endDateString = "", startDateString = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,22 +59,110 @@ public class LeadListingActivity extends AppCompatActivity {
         mProgressDialog = new ProgressDialog(LeadListingActivity.this);
         mProgressDialog.setTitle("Please Wait..");
         mProgressDialog.setMessage("Logging in...");
-        mProgressDialog.show();
+        
+        contactLeadBinding.today.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
 
-        fectchCallLogs();
 
+                contactLeadBinding.today.setBackgroundResource(R.drawable.selected_tab);
+                contactLeadBinding.today.setTextColor(Color.parseColor("#ffffff"));
+
+                contactLeadBinding.lastSeven.setBackgroundResource(R.drawable.orange_border_rectangle);
+                contactLeadBinding.lastSeven.setTextColor(Color.parseColor("#e53538"));
+
+                contactLeadBinding.lastThirty.setBackgroundResource(R.drawable.orange_border_rectangle);
+                contactLeadBinding.lastThirty.setTextColor(Color.parseColor("#e53538"));
+
+
+                contactLeadBinding.select.setBackgroundResource(R.drawable.orange_border_rectangle);
+                contactLeadBinding.select.setTextColor(Color.parseColor("#e53538"));
+
+                startDateString = previousdate(0);
+
+                currentdate();
+                apiRequestt();
+
+            }
+        });
+        contactLeadBinding.lastSeven.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+
+
+                contactLeadBinding.lastSeven.setBackgroundResource(R.drawable.selected_tab);
+                contactLeadBinding.lastSeven.setTextColor(Color.parseColor("#ffffff"));
+
+                contactLeadBinding.today.setBackgroundResource(R.drawable.orange_border_rectangle);
+                contactLeadBinding.today.setTextColor(Color.parseColor("#e53538"));
+
+                contactLeadBinding.lastThirty.setBackgroundResource(R.drawable.orange_border_rectangle);
+                contactLeadBinding.lastThirty.setTextColor(Color.parseColor("#e53538"));
+
+
+                contactLeadBinding.select.setBackgroundResource(R.drawable.orange_border_rectangle);
+                contactLeadBinding.select.setTextColor(Color.parseColor("#e53538"));
+
+
+
+                currentdate();
+                startDateString = previousdate(7);
+                apiRequestt();
+
+
+            }
+        });
+        contactLeadBinding.lastThirty.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+
+                contactLeadBinding.lastThirty.setBackgroundResource(R.drawable.selected_tab);
+                contactLeadBinding.lastThirty.setTextColor(Color.parseColor("#ffffff"));
+
+                contactLeadBinding.lastSeven.setBackgroundResource(R.drawable.orange_border_rectangle);
+                contactLeadBinding.lastSeven.setTextColor(Color.parseColor("#e53538"));
+
+                contactLeadBinding.today.setBackgroundResource(R.drawable.orange_border_rectangle);
+                contactLeadBinding.today.setTextColor(Color.parseColor("#e53538"));
+
+
+                contactLeadBinding.select.setBackgroundResource(R.drawable.orange_border_rectangle);
+                contactLeadBinding.select.setTextColor(Color.parseColor("#e53538"));
+
+
+
+
+                currentdate();
+                startDateString = previousdate(30);
+                apiRequestt();
+
+
+            }
+        });
+        contactLeadBinding.select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                datePickerDialog();
+            }
+        });
 
     }
 
     // to Fetch All Leads
-    private void fectchCallLogs() {
-
+    private void apiRequestt() {
+        mProgressDialog.show();
         SharedPreferences preferences = getSharedPreferences("loginData", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
 
 
-        String url = "https://callcrm.techfreelancepro.com/api/lead/list?date_start=2024-02-27&date_end=2024-03-02&user_id_fetch=all";
+        String url = "https://callcrm.techfreelancepro.com/api/lead/list?date_start="+startDateString+"&date_end="+endDateString+"&user_id_fetch=all";
         RequestQueue queue = Volley.newRequestQueue(LeadListingActivity.this);
         Log.d("nk", "qye");
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -68,11 +171,11 @@ public class LeadListingActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 try {
+                    fetchLeadArrayList.clear();
                     JSONObject respObj = new JSONObject(response);
 
                     JSONObject result = respObj.getJSONObject("result");
                     JSONArray jsonArray = result.getJSONArray("leadData");
-
 
                     JSONObject bannerObj = result.getJSONObject("bannerData");
                     String outGoing = bannerObj.getString("outgoing");
@@ -170,5 +273,84 @@ public class LeadListingActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String previousdate(int num) {
+        final LocalDate date = LocalDate.now();
+        final LocalDate dateMinus7Days = date.minusDays(num);
+
+        final String formattedDate = dateMinus7Days.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        System.out.println(formattedDate);
+
+        return formattedDate;
+    }
+
+    public void currentdate() {
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("yyy-MM-dd", Locale.getDefault());
+        endDateString = df.format(c);
+
+
+    }
+
+    private void datePickerDialog() {
+        MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
+        builder.setTitleText("Select Date Range");
+        builder.setTheme(R.style.MyMaterialCalendarTheme);
+
+        MaterialDatePicker<Pair<Long, Long>> datePicker = builder.build();
+        datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Pair<Long, Long>>() {
+            @Override
+            public void onPositiveButtonClick(Pair<Long, Long> selection) {
+                Long startDate = selection.first;
+                Long endDate = selection.second;
+
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                startDateString = sdf.format(new Date(startDate));
+                endDateString = sdf.format(new Date(endDate));
+
+                contactLeadBinding.select.setBackgroundResource(R.drawable.selected_tab);
+                contactLeadBinding.select.setTextColor(Color.parseColor("#ffffff"));
+
+                contactLeadBinding.lastSeven.setBackgroundResource(R.drawable.orange_border_rectangle);
+                contactLeadBinding.lastSeven.setTextColor(Color.parseColor("#e53538"));
+
+                contactLeadBinding.lastThirty.setBackgroundResource(R.drawable.orange_border_rectangle);
+                contactLeadBinding.lastThirty.setTextColor(Color.parseColor("#e53538"));
+
+
+                contactLeadBinding.today.setBackgroundResource(R.drawable.orange_border_rectangle);
+                contactLeadBinding.today.setTextColor(Color.parseColor("#e53538"));
+
+
+                apiRequestt();
+            }
+
+        });
+        datePicker.show(getSupportFragmentManager(), "DATE_PICKER");
+    }
+
+
+    @Override
+    protected void onResume() {
+
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        android.icu.text.SimpleDateFormat df = new android.icu.text.SimpleDateFormat("yyy-MM-dd", Locale.getDefault());
+        endDateString = df.format(c);
+        startDateString = df.format(c);
+
+        contactLeadBinding.today.setBackgroundResource(R.drawable.selected_tab);
+        contactLeadBinding.today.setTextColor(Color.parseColor("#ffffff"));
+
+        apiRequestt();
+
+        super.onResume();
+
+
+
+    }
 
 }

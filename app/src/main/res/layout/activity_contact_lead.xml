@@ -196,7 +196,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/progressBar"
                     app:layout_constraintStart_toStartOf="@+id/progressBar"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="@+id/progressBar">
 
                     <TextView
                         android:id="@+id/textView26"
@@ -272,30 +272,91 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView3"
-        android:layout_width="362dp"
-        android:layout_height="28dp"
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leadButton" />
+        app:layout_constraintTop_toBottomOf="@+id/leadButton">
+
+        <TextView
+            android:id="@+id/today"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/orange_border_rectangle"
+            android:gravity="center"
+            android:text="Today"
+            android:textColor="@color/orange"
+            android:textSize="8sp" />
+
+        <TextView
+            android:id="@+id/lastSeven"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/orange_border_rectangle"
+            android:gravity="center"
+            android:text="Last 7 days"
+            android:textColor="@color/orange"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toStartOf="@+id/lastThirty"
+            app:layout_constraintStart_toEndOf="@+id/today"
+            app:layout_constraintTop_toBottomOf="@+id/cardView13" />
+
+        <TextView
+            android:id="@+id/lastThirty"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/orange_border_rectangle"
+            android:gravity="center"
+            android:text="Last 30 days"
+            android:textColor="@color/orange"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toStartOf="@+id/select"
+            app:layout_constraintStart_toEndOf="@+id/lastSeven"
+            app:layout_constraintTop_toBottomOf="@+id/cardView13" />
+
+        <TextView
+            android:id="@+id/select"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+
+            android:layout_weight="1"
+            android:background="@drawable/orange_border_rectangle"
+            android:gravity="center"
+            android:text="Select"
+            android:textColor="@color/orange"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lastThirty"
+            app:layout_constraintTop_toBottomOf="@+id/cardView13" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewdetails"
         android:layout_width="366dp"
         android:layout_height="385dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button22" />
+        app:layout_constraintTop_toBottomOf="@+id/button222" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button22"
         android:layout_width="80dp"
         android:layout_height="28dp"
         android:layout_marginStart="26dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="17dp"
         android:background="@drawable/orange_border_rectangle"
         android:backgroundTint="@color/orange"
@@ -304,13 +365,13 @@
         android:textSize="11dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button232"
         android:layout_width="80dp"
         android:layout_height="28dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="17dp"
         android:background="@drawable/orange_border_rectangle"
         android:backgroundTint="@color/orange"
@@ -320,13 +381,13 @@
         app:layout_constraintBottom_toTopOf="@+id/recyclerView4"
         app:layout_constraintEnd_toStartOf="@+id/button222"
         app:layout_constraintStart_toEndOf="@+id/button22"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button222"
         android:layout_width="80dp"
         android:layout_height="28dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="26dp"
         android:layout_marginBottom="17dp"
         android:background="@drawable/orange_border_rectangle"
@@ -336,6 +397,6 @@
         android:textSize="11dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
