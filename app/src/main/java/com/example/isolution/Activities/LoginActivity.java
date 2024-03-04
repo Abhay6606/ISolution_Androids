@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                     String roleName = userData.getString("roleName");
                     String selfieImage = userData.getString("selfieImage");
                     String userName = userData.getString("userName");
-                    String client_id = userData.getString("client_id");
+                    String client_id = result.getString("client_id");
 
 
                     SharedPreferences preferences = getSharedPreferences("loginData", MODE_PRIVATE);
