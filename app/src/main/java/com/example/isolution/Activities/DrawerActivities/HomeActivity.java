@@ -94,7 +94,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        requestPerm();
+
 
 
         //Click Listeners
@@ -383,7 +383,7 @@ public class HomeActivity extends AppCompatActivity {
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
 
-
+        String client_id = preferences.getString("client_id", "null");
 
 
         String url = "https://callcrm.techfreelancepro.com/api/dashboard/list?date_start="+startDateString+"&date_end="+endDateString;
@@ -501,6 +501,7 @@ public class HomeActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("x-user-id", userId);
+                params.put("x-client-id", client_id);
                 params.put("Authorization", "Bearer " + token);
                 return params;
             }
@@ -531,25 +532,6 @@ public class HomeActivity extends AppCompatActivity {
 
     //====================================
     // code for taking Permition
-
-    private void requestPerm() {
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.READ_CALL_LOG,
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.READ_CONTACTS,
-                Manifest.permission.CALL_PHONE}, 1000);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1000) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Granted", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
 
 
 

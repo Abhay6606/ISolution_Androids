@@ -168,7 +168,7 @@ public class LogoutActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("loginData", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
-
+        String client_id = preferences.getString("client_id", "null");
 
         String url = "https://callcrm.techfreelancepro.com/api/tokenLogOut";
         RequestQueue queue = Volley.newRequestQueue(LogoutActivity.this);
@@ -198,6 +198,7 @@ public class LogoutActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("x-user-id", userId);
+                params.put("x-client-id", client_id);
                 params.put("Authorization", "Bearer " + token);
                 return params;
             }

@@ -93,8 +93,6 @@ public class LeadRecyclerAdapter extends RecyclerView.Adapter<LeadRecyclerAdapte
         });
 
 
-
-
     }
 
     @Override

@@ -136,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                     String roleName = userData.getString("roleName");
                     String selfieImage = userData.getString("selfieImage");
                     String userName = userData.getString("userName");
+                    String client_id = userData.getString("client_id");
 
 
                     SharedPreferences preferences = getSharedPreferences("loginData", MODE_PRIVATE);
@@ -146,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                     SessionManager.savePreference(preferences, "email", email);
                     SessionManager.savePreference(preferences, "mobileNumber", mobileNumber);
                     SessionManager.savePreference(preferences, "name", name);
+                    SessionManager.savePreference(preferences, "client_id", client_id);
 
 
                     if (respObj.getBoolean("status")) {
@@ -267,6 +269,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences preferences = this.getSharedPreferences("loginData", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
+        String client_id = preferences.getString("client_id", "null");
 
         String url = "https://callcrm.techfreelancepro.com/api/callDetails/user";
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
@@ -295,6 +298,7 @@ public class LoginActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("x-user-id", userId);
+                params.put("x-client-id", client_id);
                 params.put("Authorization", "Bearer " + token);
                 return params;
             }

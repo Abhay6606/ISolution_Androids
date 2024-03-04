@@ -96,7 +96,7 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
         SharedPreferences preferences = context.getSharedPreferences("loginData", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
-
+        String client_id = preferences.getString("client_id", "null");
 
         mProgressDialog = new ProgressDialog(ContectLeadForm.this);
         mProgressDialog.setTitle("Please Wait..");
@@ -134,6 +134,7 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("x-user-id", userId);
+                params.put("x-client-id", client_id);
                 params.put("Authorization", "Bearer " + token);
                 return params;
             }
@@ -188,6 +189,7 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
         SharedPreferences preferences = getSharedPreferences("loginData", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
+        String client_id = preferences.getString("client_id", "null");
 
         mProgressDialog = new ProgressDialog(ContectLeadForm.this);
         mProgressDialog.setTitle("Please Wait..");
@@ -283,6 +285,7 @@ public class ContectLeadForm extends AppCompatActivity implements AdapterView.On
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("x-user-id", userId);
+                params.put("x-client-id", client_id);
                 params.put("Authorization", "Bearer " + token);
                 return params;
             }

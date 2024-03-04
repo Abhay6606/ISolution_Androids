@@ -226,6 +226,7 @@ public class CallingDetailsActivity extends AppCompatActivity {
         SharedPreferences preferences = context.getSharedPreferences("loginData", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
+        String client_id = preferences.getString("client_id", "null");
 
         String url = "https://callcrm.techfreelancepro.com/api/callDetails/user";
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -254,6 +255,7 @@ public class CallingDetailsActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("x-user-id", userId);
+                params.put("x-client-id", client_id);
                 params.put("Authorization", "Bearer " + token);
                 return params;
             }
@@ -280,7 +282,7 @@ public class CallingDetailsActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("loginData", MODE_PRIVATE);
         String userId = preferences.getString("user_id", "null");
         String token = preferences.getString("token", "null");
-
+        String client_id = preferences.getString("client_id", "null");
 
         String url = "https://callcrm.techfreelancepro.com/api/callDetails/list?date_start="+startDateString+"&date_end="+endDateString+"&call_status="+call_status+"&call_type=all";
         RequestQueue queue = Volley.newRequestQueue(CallingDetailsActivity.this);
@@ -347,6 +349,7 @@ public class CallingDetailsActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("x-user-id", userId);
+                params.put("x-client-id", client_id);
                 params.put("Authorization", "Bearer " + token);
                 return params;
             }

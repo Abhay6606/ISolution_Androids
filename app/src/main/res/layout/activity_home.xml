@@ -944,7 +944,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/loginbtn"
                     android:layout_width="323dp"
-                    android:layout_height="40dp"
+                    android:layout_height="1dp"
                     android:layout_marginTop="16dp"
                     android:backgroundTint="@color/black"
                     app:cardCornerRadius="8dp"
